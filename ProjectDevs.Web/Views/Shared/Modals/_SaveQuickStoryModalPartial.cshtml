@@ -1,0 +1,86 @@
+﻿@model PartialModel
+@{
+    var tmpGuid = Guid.NewGuid().ToString("N");
+}
+<div class="modal fade" tabindex="-1" role="dialog" id="create-edit-quick-story-modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form method="post" id="quick-story-form">
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Project Story</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="story-id" name="StoryId" value="@Model.StoryId" />
+                    <input type="hidden" id="tmpGuid" name="tmpGuid" value="@tmpGuid" />
+                    <div class="d-form-container">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project</label>
+                                <select class="form-control d-input projects-ddl" id="story-project-id" name="ProjectId">
+                                    <option value="">Select Project</option>
+                                </select>
+                            </div>
+                        </div>
+                        @*<div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="d-label">Story Name</label>
+                                    <input type="text" class="form-control d-input" maxlength="10" id="story-name" name="StoryName" placeholder="Story Name" />
+                                </div>
+                            </div>*@
+                        <input type="hidden" value="" name="StoryName" />
+                        <input type="hidden" value="99" name="PriorityRanking" />
+                        <input type="hidden" value="" name="StoryStatus" id="story-status" />
+                        <input type="hidden" value="" id="requester-id" name="RequesterId" class="autocomplete-value-hdn" />
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">As A</label>
+                                <input type="text" class="form-control d-input" maxlength="50" id="f1" name="F1" placeholder="As a..." />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">I Want To</label>
+                                <textarea maxlength="300" class="form-control d-input"
+                                          id="f2" name="F2" placeholder="I want to..." rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">So I Can</label>
+                                <textarea maxlength="300" class="form-control d-input"
+                                          id="f3" name="F3" placeholder="So I can..." rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">Acceptance Criteria</label>
+                                <textarea maxlength="300" class="form-control d-input"
+                                          id="acceptance-criteria" name="AcceptanceCriteria" placeholder="Acceptance criteria" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <button type="button" class="btn dv-btn-success btn-xs" id="btnUploadTempFile" data-file-type-id="" data-file-type="@FileType.TemporaryFile" data-record-id="@tmpGuid" ap-action-file-modal-form>
+                                <i class="fa fa-upload m-r-5"></i> Upload File
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-story-btn" class="btn dv-btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@{
+    Html.RenderPartial("Lists/_FilesPartial", new PartialModel { TempGuid = tmpGuid, FileType = (int)FileType.TemporaryFile, IsEditEnabled = true });
+    Html.RenderPartial("Modals/_SaveFileModalPartial", new PartialModel { TempGuid = tmpGuid, FileType = (int)FileType.TemporaryFile });
+}
+
+

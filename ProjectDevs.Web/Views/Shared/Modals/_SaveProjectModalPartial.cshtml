@@ -1,0 +1,143 @@
+﻿@model PartialModel
+
+<div class="modal fade" tabindex="-1" role="dialog" id="create-edit-project-modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form method="post" id="project-form">
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Project</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="project-id" name="ProjectId" value="@Model.ProjectId" />
+                    <div class="d-form-container">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project Name</label>
+                                <input type="text" class="form-control d-input" id="project-name" name="ProjectName" placeholder="Project name" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Priority Ranking</label>
+                                <div class="dv-slidecontainer">
+                                    <input type="range" min="0" max="10" step="1" value="0" class="dv-slider"
+                                           id="priority-ranking" name="PriorityRanking" placeholder="Priority ranking" />
+                                    <span class="range-slider-value-indicator" id="">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Team</label>
+                                <select class="form-control d-input teams-ddl" id="team" name="TeamId">
+                                    <option value="">Select Team</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project Type</label>
+                                <select class="form-control d-input" id="project-type" name="ProjectType">
+                                    <option value="">Select Project Type</option>
+                                    <option value="Product">Product</option>
+                                    <option value="Program">Program</option>
+                                    <option value="Initiative">Initiative</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project Status</label>
+                                <select class="form-control d-input projects-status-ddl" id="project-status" name="ProjectStatusId">
+                                    <option value="">Select Project Status</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Start Date</label>
+                                <input type="date" class="form-control d-input" name="StartDate" placeholder="Start date" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Request Date</label>
+                                <input type="date" class="form-control d-input" id="request-date" name="RequestDate" placeholder="Request date" />
+                            </div>
+                            <div class="form-group">
+                                <label class="d-label">Request by Date</label>
+                                <input type="date" class="form-control d-input" id="request-by-date" name="RequestedByDate" placeholder="Request by date" />
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Production Date</label>
+                                <input type="date" class="form-control d-input" name="CompletedDate" placeholder="Production date" />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr class="m-t-0 m-b-15" />
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Product Owner</label>
+                                <input type="text" class="form-control d-input users-auto" id="product-owner-name" placeholder="Product owner" />
+                                <input type="hidden" value="" id="product-owner-id" name="ProductOwnerId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project Manager</label>
+                                <input type="text" class="form-control d-input users-auto" id="project-manager-name" placeholder="Project manager" />
+                                <input type="hidden" value="" id="project-manager-id" name="ProjectManagerId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Lead Developer</label>
+                                <input type="text" class="form-control d-input users-auto-devloper" id="lead-developer-name" placeholder="Lead developer" />
+                                <input type="hidden" value="" id="lead-developer-id" name="LeadDeveloperId" class="autocomplete-value-hdn" />
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Business Analyst</label>
+                                <input type="text" class="form-control d-input users-auto" id="business-analyst-name" placeholder="Business analyst" />
+                                <input type="hidden" value="" id="business-analyst-id" name="BusinessAnalystId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Stakeholders</label>
+                                <input type="text" class="form-control d-input users-auto stakeholder-txt" placeholder="Stakeholders" />
+                                <input type="hidden" value="" id="stakeholder-ids" name="StakeHolderIds" class="autocomplete-value-hdn" />
+                            </div>
+                            <ul id="stakeholders-box-list" class="usernames-box-list">
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Meeting Schedule</label>
+                                <textarea maxlength="100" class="form-control d-input"
+                                          id="meeting-schedule" name="MeetingSchedule" placeholder="Meeting schedule" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-project-btn" class="btn dv-btn-success" disabled>Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

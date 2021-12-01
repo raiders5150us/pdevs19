@@ -1,0 +1,75 @@
+﻿@{
+
+    ViewBag.Title = "Reports";
+}
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <h3 class="d-flex v-center">
+                <label>@ViewBag.Title <span id="record-span"></span></label>
+            </h3>
+        </div>
+        <hr class="m-y-10" />
+        <div class="d-flex v-center h-space-between">
+            <div class="filter-by-item f-grow-1 m-x-5">
+                <label>Team</label>
+                <select class="form-control teams-ddl" id="filter-team-id" multiple="multiple">
+                    <option value="">Select Team</option>
+                </select>
+            </div>
+            <div class="filter-by-item f-grow-1 m-r-5">
+                <label>Report</label>
+                <select class="form-control report-type-ddl" id="filter-report-type-id">
+                    <option value="">Select Report</option>
+                </select>
+            </div>
+            <div class="filter-by-item f-grow-1 m-x-5" style="display:none;" id="dvSprintDdl">
+                <label>Sprint</label>
+                <select class="form-control sprints-ddl" id="filter-sprint-id">
+                    <option value="">Select Sprint</option>
+                </select>
+            </div>
+            <div class="filter-by-item f-grow-1 m-l-5"  style="display:none;" id="dvStartDate">
+                <label>Start Date</label>
+                <input class="form-control" type="date" name="StartDate" value="" id="start-date"/>
+            </div>
+            <div class="filter-by-item f-grow-1 m-l-5"  style="display:none;" id="dvEndDate">
+                <label>End Date</label>
+                <input class="form-control" type="date" name="EndDate" value="" id="end-date"/>
+            </div>
+            <div class="filter-by-item f-grow-1 m-l-5">
+                <button style="margin-top:25px;display:none" type="button" class="btn dv-btn-success" report-list-ap-action-button>
+                    Go
+                </button>
+                <button style="margin-top:25px;display:none" type="button" class="btn dv-btn-success m-l-5" report-list-ap-export-button>
+                    Export
+                </button>
+            </div>
+           
+        </div>
+        <hr class="m-y-10" />
+        <div class="row" >
+            <div class="col col-lg-12" id="report-list">
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr class="m-y-5" />
+
+        <div class="user-stories-paging d-flex v-center h-space-between">
+            <p id="apdt_notes_info" style="display: none">Showing <span class="apdt_startfrom">0</span> to <span class="apdt_endto">0</span> of <span class="apdt_total">0</span> records</p>
+            <div class="" id="notes-paging-container"></div>
+        </div>
+        <hr class="m-b-0 m-t-10" />
+    </div>
+</div>
+@{
+    Html.RenderPartial("Lists/_SprintCloseStoryHoursReport", new PartialModel { });
+    Html.RenderPartial("Lists/_ProductionSupport", new PartialModel { });
+    Html.RenderPartial("Lists/_ProductionRelease", new PartialModel { });
+}
+@section scripts{
+    <script src="~/Scripts/js/CookieUtils.js"></script>
+    <script src="~/Scripts/js/ReportService.js"></script>
+    <script src="~/Scripts/js/Reports.js"></script>
+}

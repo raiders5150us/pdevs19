@@ -1,0 +1,69 @@
+﻿@{
+    int projectId = ViewBag.ProjectId ?? 0;
+    int noteType = ViewBag.NoteType ?? 0;
+    int recordId = ViewBag.RecordId ?? 0;
+    bool isMyPage = ViewBag.My ?? false;
+
+    ViewBag.Title = (isMyPage ? "My " : "") + "Notes";
+}
+@Html.Hidden("MainProjectId", projectId)
+@Html.Hidden("MainNoteType", noteType)
+@Html.Hidden("MainRecordId", recordId)
+@Html.Hidden("IsMyPage", isMyPage)
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <h3 class="d-flex v-center">
+                <label>@ViewBag.Title <span id="record-span"></span></label>
+            </h3>
+        </div>
+        <hr class="m-y-10" />
+        <div class="d-flex v-center h-space-between">
+            <div class="filter-by-item f-grow-1 m-x-5 col-lg-3">
+                <label>Team</label>
+                <select class="form-control teams-ddl" id="filter-team-id" multiple="multiple">
+                    <option value="">Select Team</option>
+                </select>
+            </div>
+            <div class="filter-by-item f-grow-1 m-r-5">
+                <label>Project</label>
+                <select class="form-control projects-ddl" id="filter-project-id">
+                    <option value="">Select Project</option>
+                </select>
+
+            </div>
+            <div class="filter-by-item f-grow-1 m-x-5">
+            </div>
+            <div class="filter-by-item f-grow-1 m-l-5">
+            </div>
+            <button type="button" class="btn dv-btn-success btn-xs" notes-ap-action-note-modal-form data-note-type="@NoteType.Projects" data-record-id="">
+                <i class="fa fa-plus m-r-5"></i> Add Notes
+            </button>
+        </div>
+        <hr class="m-y-10" />
+        <ul class="story-list p-r-10" id="notes-list">
+        </ul>
+        <div class="clearfix"></div>
+        <hr class="m-y-5" />
+
+        <div class="user-stories-paging d-flex v-center h-space-between">
+            <p id="apdt_notes_info" style="display: none">Showing <span class="apdt_startfrom">0</span> to <span class="apdt_endto">0</span> of <span class="apdt_total">0</span> records</p>
+            <div class="" id="notes-paging-container"></div>
+        </div>
+        <hr class="m-b-0 m-t-10" />
+    </div>
+</div>
+
+@{
+    Html.RenderPartial("Lists/_NotesPartial", new PartialModel { NoteType = noteType, RecordId = recordId, IsMyPage = isMyPage });
+    Html.RenderPartial("Modals/_SaveNoteModalPartial", new PartialModel { RecordId = projectId, FileType = (int)NoteType.Projects, IdPrefix = "notes_" });
+}
+
+
+@section scripts{
+    <script src="~/Scripts/js/CookieUtils.js"></script>
+    <script src="~/Scripts/js/NoteService.js"></script>
+    <script src="~/Scripts/js/Notes.js"></script>
+}
+

@@ -1,0 +1,167 @@
+﻿@model PartialModel
+
+<div class="modal fade" tabindex="-1" role="dialog" id="create-edit-story-modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form method="post" id="story-form">
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Project Story</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="story-id" name="StoryId" value="@Model.StoryId" />
+                    <div class="d-form-container">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project</label>
+                                <select class="form-control d-input projects-ddl" id="story-project-id" name="ProjectId">
+                                    <option value="">Select Project</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Story Status</label>
+                                <select class="form-control d-input stories-status-ddl" id="story-status" name="StoryStatus">
+                                    <option value="">Select Story Status</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Story Name</label>
+                                <input type="text" class="form-control d-input" maxlength="10" id="story-name" name="StoryName" readonly placeholder="Story Name" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Priority Ranking</label>
+                                <div class="dv-slidecontainer">
+                                    <input type="range" min="0" max="10" step="1" value="0" class="dv-slider"
+                                           id="priority-ranking" name="PriorityRanking" placeholder="Priority ranking" />
+                                    <span class="range-slider-value-indicator" id="">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">As A</label>
+                                <input type="text" class="form-control d-input" maxlength="50" id="f1" name="F1" placeholder="As a..." />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">I Want To</label>
+                                <textarea maxlength="300" class="form-control d-input"
+                                          id="f2" name="F2" placeholder="I want to..." rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">So I Can</label>
+                                <textarea maxlength="300" class="form-control d-input"
+                                          id="f3" name="F3" placeholder="So I can..." rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">Acceptance Criteria</label>
+                                <textarea maxlength="300" class="form-control d-input"
+                                          id="acceptance-criteria" name="AcceptanceCriteria" placeholder="Acceptance criteria" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Requester</label>
+                                <input type="text" class="form-control d-input users-auto" id="requster-name" placeholder="Requester" />
+                                <input type="hidden" value="" id="requester-id" name="RequesterId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Requested Date</label>
+                                <input type="date" class="form-control d-input" id="requested-date" name="RequestDate" placeholder="Requested date" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Requester Target Date</label>
+                                <input type="date" class="form-control d-input" id="requester-target-date" name="RequesterTargetDate" placeholder="Requester target date" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Grooming Complete Date</label>
+                                <input type="date" class="form-control d-input" id="grooming-complete-date" name="GroomingCompleteDate" placeholder="Grooming complete date" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Prod Target Date</label>
+                                <input type="date" class="form-control d-input" id="prod-target-date" name="ProdTargetDate" placeholder="Prod target date" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Start Date</label>
+                                <input type="date" class="form-control d-input" id="start-date" name="StartDate" placeholder="Start date" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Prod Date</label>
+                                <input type="date" class="form-control d-input" id="end-date" name="EndDate" placeholder="Prod date" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Assigned To</label>
+                                <input type="text" class="form-control d-input users-auto" id="assigned-to-name" placeholder="Assigned to" />
+                                <input type="hidden" value="" id="assigned-to-id" name="AssignedToUserId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Environment</label>
+                                <select class="form-control d-input" id="env" name="Environment">
+                                    <option value="">Select Environment</option>
+                                    <option value="DEV">DEV</option>
+                                    <option value="UAT">UAT</option>
+                                    <option value="PRD">PRD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Story Type</label>
+                                <select class="form-control d-input story-types-ddl" name="StoryTypeId">
+                                    <option value="">Select Type</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Sprint</label>
+                                <select class="form-control d-input sprints-ddl" id="sprint-id">
+                                    <option value="0">Select Sprint</option>
+                                </select>
+                                <input type="hidden" name="SprintIds" value="" />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-story-btn" class="btn dv-btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

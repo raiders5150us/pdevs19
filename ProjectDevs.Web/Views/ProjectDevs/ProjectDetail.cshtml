@@ -1,0 +1,195 @@
+﻿@{
+    ViewBag.Title = "Project Details";
+    int projectId = ViewBag.ProjectId;
+}
+@Html.Hidden("ProjectId", projectId)
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <h3 class="d-flex v-center">
+                <label data-project-name></label>
+                <button type="button" class="m-l-15 btn btn-success btn-xs" title="Edit project details" ap-action-project-modal-form data-project-id="@projectId">
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </h3>
+            <a role="button" class="btn dv-btn-success btn-sm pull-right" href="/Projects">
+                <i class="fa fa-list m-r-10"></i> All Projects
+            </a>
+        </div>
+        <hr class="m-y-15" />
+        <div class="d-block w-100 m-b-15 p-10 p-y-30 project-details-container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Priority Ranking: <small data-priority-ranking></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Team: <small data-project-team></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Project Type: <small data-project-type></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Project Status: <small data-project-status></small></label>
+                </div>
+                
+            </div>
+            <hr class="m-y-10" />
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Meeting Schedule: <small data-meeting-schedule></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Requested Date: <small data-requested-date></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Requested by Date: <small data-requested-by-date></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Start Date: <small data-start-date></small></label>
+                </div>
+               
+            </div>
+            <hr class="m-y-10" />
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Production Date: <small data-completed-date></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Product Owner: <small data-product-owner></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Project Manager: <small data-project-manager></small></label>
+                </div>
+                <div class="col-sm-3">
+                    <label>Lead Developer: <small data-lead-developer></small></label>
+                </div>
+               
+            </div>
+            <hr class="m-y-10" />
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Business Analyst: <small data-business-analyst></small></label>
+                </div>
+                <div class="col-sm-9">
+                    <label>
+                        Stakeholders: <span data-stakeholders-container class="p-l-5"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <hr class="m-y-15" />
+            <div class="d-block w-100">
+                <div class="p-10 shad-light">
+                    <div class="d-flex v-center h-space-between">
+                        <div class="col-lg-2">
+                            <h4>User Stories</h4>
+                        </div>
+
+                        <div class="col-lg-10 text-right pull-right">
+                            <button type="button" class="btn dv-btn-success btn-xs" ap-action-story-modal-form data-project-id="@projectId">
+                                <i class="fa fa-plus m-r-5"></i> Create User Story
+                            </button>
+                            <button type="button" class="btn dv-btn-success btn-xs" ap-action-quick-story-modal-form data-project-id="@projectId">
+                                <i class="fa fa-plus m-r-5"></i> Quick Story
+                            </button>
+                        </div>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    @*<ul class="story-list p-r-10" id="user-stories-list">
+                        </ul>*@
+                    <div class="d-flex v-center h-space-between">
+
+                        <table id="list-project-stories-table" class="table table-striped table-bordered" style="width:100%">
+                            <tbody id="user-stories-list">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                    <hr class="m-y-5" />
+                    <div class="text-center">
+                        <a href="/User-Stories?projectId=@projectId" class="d-inline-block f-16" title="View all user stories">View All User Stories</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="d-flex m-t-10">
+                <div class="f-grow-7 p-10 shad-light m-r-5">
+                    <div class="d-flex v-center h-space-between">
+                        <h4>Meetings</h4>
+                        <button type="button" class="btn dv-btn-success btn-xs" ap-action-meeting-modal-form data-project-id="@projectId">
+                            <i class="fa fa-plus m-r-5"></i> Create Meeting
+                        </button>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <ul class="story-list p-r-10 v-scrollable" id="project-meetings-list">
+                    </ul>
+                    <hr class="m-y-5" />
+                    <div class="text-center">
+                        <a href="/Project/@projectId/Meetings" class="d-inline-block f-15" title="View all meetings">View All Meetings</a>
+                    </div>
+                </div>
+                <div class="f-grow-3 p-10 shad-light m-l-5">
+                    <div class="d-flex v-center h-space-between">
+                        <h5>Files</h5>
+                        <button type="button" class="btn dv-btn-success btn-xs" data-file-type="@FileType.Projects" data-record-id="@projectId"
+                                ap-action-file-modal-form>
+                            <i class="fa fa-upload m-r-5"></i> Upload File
+                        </button>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <ul class="files-list" id="files-list">
+                    </ul>
+                    <hr class="m-y-5" />
+                    @*<div class="text-center">
+                            <a href="/Files/type/@FileType.Projects/of/@projectId" class="d-inline-block f-15" title="View all files">View All Files</a>
+                        </div>*@
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="p-10 m-t-10 shad-light">
+                <div class="d-flex v-center h-space-between">
+                    <h4>Notes</h4>
+                    <button type="button" class="btn dv-btn-success btn-xs" ap-action-note-modal-form data-note-type="@NoteType.Projects" data-record-id="@projectId">
+                        <i class="fa fa-plus m-r-5"></i> Add Notes
+                    </button>
+                </div>
+                <hr class="m-t-0 m-b-10" />
+                <ul class="story-list p-r-10" id="notes-list">
+                </ul>
+                <hr class="m-y-5" />
+                <div class="text-center">
+                    <a href="/Project/@projectId/Notes/type/@((int)NoteType.Projects)/of/@projectId" class="d-inline-block f-16" title="View all notes">View All Notes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    Html.RenderPartial("Lists/_UserStoriesPartial", new PartialModel { ProjectId = projectId, IsEditEnabled = true });
+    Html.RenderPartial("Lists/_MeetingsPartial", new PartialModel { ProjectId = projectId, IsEditEnabled = true });
+    Html.RenderPartial("Lists/_FilesPartial", new PartialModel { RecordId = projectId, FileType = (int)FileType.Projects, IsEditEnabled = true });
+    Html.RenderPartial("Lists/_NotesPartial", new PartialModel { RecordId = projectId, NoteType = (int)NoteType.Projects, IsEditEnabled = true });
+
+    Html.RenderPartial("Modals/_SaveStoryModalPartial", new PartialModel { ProjectId = projectId });
+    Html.RenderPartial("Modals/_SaveQuickStoryModalPartial", new PartialModel { ProjectId = projectId });
+    Html.RenderPartial("Modals/_SaveMeetingModalPartial", new PartialModel { ProjectId = projectId });
+    Html.RenderPartial("Modals/_MeetingNotesModalPartial", new PartialModel { ProjectId = projectId });
+    Html.RenderPartial("Modals/_SaveNoteModalPartial", new PartialModel { RecordId = projectId, FileType = (int)NoteType.Projects });
+    Html.RenderPartial("Modals/_SaveNoteModalPartial", new PartialModel { RecordId = projectId, FileType = (int)NoteType.Meetings, IdPrefix = "meeting_" });
+    Html.RenderPartial("Modals/_SaveFileModalPartial", new PartialModel { RecordId = projectId, NoteType = (int)NoteType.Projects });
+
+    Html.RenderPartial("Modals/_SaveProjectModalPartial", new PartialModel { ProjectId = projectId });
+}
+
+@section scripts{
+    <script src="~/Scripts/js/ProjectService.js"></script>
+    <script src="~/Scripts/js/MeetingService.js"></script>
+    <script src="~/Scripts/js/StoryService.js"></script>
+    <script src="~/Scripts/js/FileService.js"></script>
+    <script src="~/Scripts/js/NoteService.js"></script>
+    <script src="~/Scripts/js/ProjectDetails.js"></script>
+}
+

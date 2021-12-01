@@ -1,0 +1,159 @@
+﻿#full-overlay {
+    background-color: rgba(149, 34, 4, .9);
+}
+
+.modal-header-danger {
+    background-color: #952204;
+    color: #fff;
+}
+
+.modal-header-success {
+    background-color: #952204;
+    color: #fff;
+}
+
+.modal-header-primary {
+    background-color: #952204;
+    color: #fff;
+}
+
+.modal-header-info {
+    background-color: #952204;
+    color: #fff;
+}
+
+.modal-header-warning {
+    background-color: #952204;
+    color: #fff;
+}
+
+
+.top-bar {
+    background-color: #000;
+}
+
+#search-tabs > li:hover > a, #search-tabs > li:focus > a {
+    background: #ed7f62;
+}
+
+.left-drawer {
+    background-color: #952204;
+}
+
+.left-drawer-nav-list > li:hover {
+    background-color: #9b3d24;
+}
+
+.dv-bg-success {
+    background-color: #952204;
+}
+
+.dv-btn-success {
+    background-color: #952204;
+}
+
+    .dv-btn-success:hover, .dv-btn-success:focus, .dv-btn-success.focus {
+        background-color: #781f08;
+    }
+
+.form-control, .d-input {
+    border-color: #6c6b6b;
+}
+
+hr {
+    border-top-color: #6c6b6b;
+}
+
+.d-tag, .d-tag-sm {
+    border-color: #e56a59;
+    background: #df8989;
+}
+
+.d-label {
+    color: #952204;
+}
+
+.btn-default {
+    border-color: #6c6b6b;
+}
+
+.btn-success {
+    background-color: #ae301f;
+    border-color: #a1221b;
+}
+
+    .btn-success:hover {
+        background-color: #781c04;
+        border-color: #952204;
+    }
+
+.table-bordered {
+    border: 1px solid #6c6b6b;
+}
+
+    .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+        /*border: 1px solid #6c6b6b;*/
+        border-color: #6c6b6b;
+    }
+
+.devs-table th {
+    color: #952204;
+}
+
+.dv-slidecontainer > .range-slider-value-indicator {
+    background: #952204;
+}
+
+    .dv-slidecontainer > .range-slider-value-indicator::after {
+        border-right: 7px solid #952204;
+    }
+
+.dv-slider::-webkit-slider-thumb {
+    background: #952204;
+}
+
+.dv-slider::-moz-range-thumb {
+    background: #952204;
+}
+
+.d-checkmark {
+    border: 1px solid #952204;
+}
+
+.d-checkbox-container input.d-checkbox:checked ~ .d-checkmark {
+    background-color: #952204;
+}
+
+.project-details-container label {
+    color: #952204;
+}
+
+#sprint-actual-hrs-progress-bar.progress-bar-success {
+    background-color: #952204;
+}
+
+#search-tabs {
+    border-bottom: 1px solid #952204;
+}
+
+    #search-tabs > li > a {
+        color: #952204;
+    }
+
+    #search-tabs > li.active > a, #search-tabs > li.active > a:hover, #search-tabs > li.active > a:focus {
+        background: #952204;
+    }
+/* Track */
+::-webkit-scrollbar-track {
+    background: #9d3b21;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #742c19;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #750e0e;
+    }

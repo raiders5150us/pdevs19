@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DC89C33-F53C-49EF-ABD8-CCF29B58F888}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProjectDevs.Core</RootNamespace>
+    <AssemblyName>ProjectDevs.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\AppSettings.cs" />
+    <Compile Include="Constants\Cache.cs" />
+    <Compile Include="Constants\PdConstants.cs" />
+    <Compile Include="Constants\Database.cs" />
+    <Compile Include="Constants\PdClaims.cs" />
+    <Compile Include="DTO\ProjectCreateDto.cs" />
+    <Compile Include="DTO\ProjectDisplayDto.cs" />
+    <Compile Include="DTO\ProjectDto.cs" />
+    <Compile Include="DTO\ProjectDtoBase.cs" />
+    <Compile Include="DTO\ProjectStoryBulkOrderUpdateDto.cs" />
+    <Compile Include="DTO\ProjectStoryDisplayDto.cs" />
+    <Compile Include="DTO\RotaSuppDto.cs" />
+    <Compile Include="DTO\SprintDto.cs" />
+    <Compile Include="DTO\TestScriptDto.cs" />
+    <Compile Include="Enumerations\EmailType.cs" />
+    <Compile Include="Enumerations\FileType.cs" />
+    <Compile Include="Enumerations\NoteType.cs" />
+    <Compile Include="Enumerations\RoleType.cs" />
+    <Compile Include="Enumerations\TestScriptUserTypes.cs" />
+    <Compile Include="Interfaces\Repositories\IDashboardRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IRotaSuppRepo.cs" />
+    <Compile Include="Interfaces\Services\IEmailService.cs" />
+    <Compile Include="Interfaces\Repositories\IDbLogRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IMastersRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IFilesRepo.cs" />
+    <Compile Include="Interfaces\Repositories\INotesRepo.cs" />
+    <Compile Include="Interfaces\Repositories\INotificationRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IProjectMeetingRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IProjectRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IProjectStoryRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IRepoFactory.cs" />
+    <Compile Include="Interfaces\Repositories\ISearchRepo.cs" />
+    <Compile Include="Interfaces\Repositories\ISprintRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IStoryTaskRepo.cs" />
+    <Compile Include="Interfaces\Repositories\ITestScriptRepo.cs" />
+    <Compile Include="Interfaces\Repositories\IUserRepo.cs" />
+    <Compile Include="Interfaces\Services\ICacheService.cs" />
+    <Compile Include="Models\DashboardStats.cs" />
+    <Compile Include="Models\MailUser.cs" />
+    <Compile Include="Models\DbLog.cs" />
+    <Compile Include="Models\FileNameModel.cs" />
+    <Compile Include="Models\NoteModel.cs" />
+    <Compile Include="Models\PagingModel.cs" />
+    <Compile Include="Models\ProjectFile.cs" />
+    <Compile Include="Models\ProjectMeeting.cs" />
+    <Compile Include="Models\ProjectNote.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectNotification.cs" />
+    <Compile Include="Models\ProjectSprintMapping.cs" />
+    <Compile Include="Models\ProjectRole.cs" />
+    <Compile Include="Models\RotaSuppData.cs" />
+    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\Sprint.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\StoriesWithoutEndDate.cs" />
+    <Compile Include="Models\StoryHours.cs" />
+    <Compile Include="Models\TestScript.cs" />
+    <Compile Include="Models\TestScriptStep.cs" />
+    <Compile Include="Models\UserStory.cs" />
+    <Compile Include="Models\StoryTask.cs" />
+    <Compile Include="Models\ProjectUser.cs" />
+    <Compile Include="Models\ProjectRoleAssignment.cs" />
+    <Compile Include="Models\TokenModel.cs" />
+    <Compile Include="Models\UserTokenModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

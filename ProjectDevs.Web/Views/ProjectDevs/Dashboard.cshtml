@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container-fluid">
+    
+    <div class="row bg-w p-15">
+        
+        <div>
+            <ul class="nav nav-tabs nav-justified" role="tablist" id="search-tabs">
+                <li role="presentation" class="active">
+                    <a href="#dashboard" role="tab" data-toggle="tab">Dashboard</a>
+                </li>
+                <li role="presentation">
+                    <a href="#overview" role="tab" data-toggle="tab">Overview</a>
+                </li>
+
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active p-15" id="dashboard">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="dashboard-card bg-color-1">
+                                <label class="number" t-active-projects>-</label>
+                                <p class="description">Active Projects</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="dashboard-card bg-color-2">
+                                <label class="number" t-average-story-complete-sprint>-</label>
+                                <p class="description">Average # of Stories Completed per Sprint </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="dashboard-card bg-color-3">
+                                <label class="number"><span t-average-time-completion-story>- </span><small> business days</small></label>
+                                <p class="description">Average time to completion per story </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="dashboard-card bg-color-4">
+                                <label class="number" t-projected-to-actual-ratio>-%</label>
+                                <p class="description">Projected Hours / Actual Hours </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="dashboard-card bg-color-5">
+                                <label class="number" t-test-script-attempt-pass-rate>-%</label>
+                                <p class="description">Test Script 1<sup>st</sup> Attempt Pass Rate </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="dashboard-card bg-color-6">
+                                <label class="number" t-issue-reported-story>-</label>
+                                <p class="description">Issues Reported per Story </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane p-15" id="overview">
+                    <iframe src="~/Content/files/file-example_PDF_500_kB.pdf" class="iframe_overview" frameborder="0" style="width:100%;height:100%"></iframe>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/js/Dashboard.js"></script>
+}

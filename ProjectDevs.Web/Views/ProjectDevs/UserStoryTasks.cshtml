@@ -1,0 +1,88 @@
+﻿@{
+    int storyId = ViewBag.StoryId ?? 0;
+    bool isMyPage = ViewBag.My ?? false;
+    int projectId = ViewBag.ProjectId ?? 0;
+
+    ViewBag.Title = (isMyPage ? "My " : "") + "Tasks";
+}
+@Html.Hidden("MainStoryId", storyId)
+@Html.Hidden("MainProjectId", projectId)
+@Html.Hidden("IsMyPage", isMyPage)
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <h3 class="d-flex v-center">
+                <label>@ViewBag.Title</label>
+            </h3>
+            <a role="button" class="btn dv-btn-success btn-sm pull-right" ap-action-task-modal-form data-story-id="@storyId" data-project-id="@projectId">
+                <i class="fa fa-plus m-r-10"></i> Create Task
+            </a>
+        </div>
+        @if (!isMyPage)
+        {
+            <hr class="m-y-10" />
+            <div class="d-flex v-center h-space-between">
+                <div class="filter-by-item f-grow-1 m-r-5">
+                    <label>Team</label>
+                    <select class="form-control teams-ddl" id="filter-team-id" multiple="multiple">
+                        <option value="">Select Team</option>
+                    </select>
+                </div>
+                <div class="filter-by-item f-grow-1 m-r-5">
+                    <label class="d-block">Project</label>
+                    <select class="form-control projects-ddl m-w-200" id="filter-project-id">
+                        <option value="">Select Project</option>
+                    </select>
+                </div>
+                <div class="filter-by-item f-grow-4 m-l-5">
+                    <label class="d-block">Story</label>
+                    <select class="form-control stories-ddl" id="filter-story-id">
+                        <option value="">Select Story</option>
+                    </select>
+                </div>
+            </div>
+
+            <hr class="m-y-10" />
+            <div class="d-flex v-center h-space-between">
+                <div class="filter-by-item f-grow-4 m-r-5">
+                    <label>Task status</label>
+                    <select class="form-control task-status-ddl" id="filter-task-status">
+                        <option value="">Select Status</option>
+                    </select>
+                </div>
+                <div class="filter-by-item f-grow-4 m-l-5">
+                    <label>Assigned to user</label>
+                    <input type="text" class="form-control d-input users-auto" placeholder="Assignee" id="filter-assignee-name" />
+                    <input type="hidden" value="" id="filter-assignee-id" class="autocomplete-value-hdn" />
+                </div>
+                <div class="f-grow-4">&nbsp;</div>
+            </div>
+        }
+        <hr class="m-y-10" />
+        <ul class="story-list" id="story-tasks-list">
+        </ul>
+        <div class="clearfix"></div>
+        <hr class="m-y-5" />
+
+        <div class="user-stories-paging d-flex v-center h-space-between">
+            <p id="apdt_storytasks_info" style="display: none">Showing <span class="apdt_startfrom">0</span> to <span class="apdt_endto">0</span> of <span class="apdt_total">0</span> records</p>
+            <div class="" id="story-tasks-paging-container"></div>
+        </div>
+
+        <hr class="m-b-0 m-t-10" />
+    </div>
+</div>
+
+@{
+    Html.RenderPartial("Lists/_TasksPartial", new PartialModel { StoryId = storyId, IsMyPage = isMyPage, IsEditEnabled = true, ProjectId = projectId });
+
+    Html.RenderPartial("Modals/_SaveTaskModalPartial", new PartialModel { StoryId = storyId, ProjectId = projectId });
+}
+
+@section scripts{
+    <script src="~/Scripts/js/CookieUtils.js"></script>
+    <script src="~/Scripts/js/TaskService.js"></script>
+    <script src="~/Scripts/js/UserStoryTasks.js"></script>
+}
+

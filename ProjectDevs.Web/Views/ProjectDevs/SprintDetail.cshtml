@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Sprint Detail";
+    int SprintId = ViewBag.SprintId;
+}
+@Html.Hidden("SprintId", SprintId)
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <div>
+                <h5>Sprint Details</h5>
+            </div>
+            <div class="d-flex v-center">
+            </div>
+            <div>
+                <a role="button" class="btn dv-btn-success btn-sm pull-right" title="Edit sprint details"
+                   data-sprint-id="@SprintId" ap-action-sprint-modal-form>
+                    <i class="fa fa-pencil"></i> Edit
+                </a>
+                <a role="button" class="btn dv-btn-success btn-sm pull-right m-r-10" title="Close Sprint"
+                   data-sprint-id="@SprintId" ap-action-sprint-close>
+                    <i class="fa fa-check"></i> Close Sprint
+                </a>
+            </div>
+            
+        </div>
+        <hr class="m-y-15" />
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="">Sprint Name</label>
+                <p class="f3-text" data-sprint-name></p>
+                <label class="">Team </label>
+                <p class="f3-text" data-team-name></p>
+                <label class="m-t-10">Start Date </label>
+                <p class="f3-text" data-startdate></p>
+                <label class="m-t-10">End Date </label>
+                <p class="f3-text" data-enddate></p>
+
+            </div>
+            <div class="col-lg-6">
+                <label class="">User Stories Count</label>
+                <p class="f3-text" data-userstoriescount></p>
+                <label class="">User Stories Completed</label>
+                <p class="f3-text" data-userstoriescompleted></p>
+                <label class="">Change Number</label>
+                <p class="f3-text" data-changenumber></p>
+                <label class="">Sprint Retrospective</label>
+                <p class="f3-text" data-sprintretrospective></p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="d-flex m-t-10">
+            <div class="f-grow-3 p-10 shad-light m-l-5">
+                <div class="d-flex v-center h-space-between">
+                    <h5>Files</h5>
+                    <button type="button" class="btn dv-btn-success btn-xs" data-file-type-id="" data-file-type="@FileType.Sprints" data-record-id="@SprintId" ap-action-file-modal-form>
+                        <i class="fa fa-upload m-r-5"></i> Upload File
+                    </button>
+                </div>
+                <hr class="m-t-0 m-b-10" />
+                <ul class="files-list" id="files-list">
+                </ul>
+                <hr class="m-y-5" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="create-edit-sprint-additional-modal" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <form method="post" id="sprints-form">
+                <input type="hidden" id="sprint-id" name="SprintId" value="0" />
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Sprint</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="d-form-container">
+                        <div class="form-group">
+                            <label class="d-label">Sprint Name</label>
+                            <input type="text" class="form-control d-input" name="SprintName" placeholder="Sprint name" />
+                        </div>
+                        <div class="form-group">
+                            <label class="d-label">Team</label>
+                            <select class="form-control d-input teams-ddl" id="team" name="TeamId">
+                                <option value="">Select Team</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="d-label">Start Date</label>
+                            <input type="date" class="form-control d-input" name="StartDate" placeholder="Start date" />
+                        </div>
+                        <div class="form-group">
+                            <label class="d-label">End Date</label>
+                            <input type="date" class="form-control d-input" name="EndDate" placeholder="End date" />
+                        </div>
+                        <div class="form-group">
+                            <label class="d-label">Change Number</label>
+                            <input type="text" class="form-control" name="ChangeNumber" placeholder="Change Number" />
+                        </div>
+                        <div class="form-group">
+                            <label class="d-label">Sprint Retrospective</label>
+                            <textarea class="form-control" rows="5" name="SprintRetrospective" placeholder="Sprint Retrospective"></textarea>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-sprint-btn" class="btn dv-btn-success dv-btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@{
+
+    Html.RenderPartial("Lists/_FilesPartial", new PartialModel { RecordId = SprintId, FileType = (int)FileType.Sprints, IsEditEnabled = true });
+    Html.RenderPartial("Modals/_SaveFileModalPartial", new PartialModel { RecordId = SprintId, NoteType = (int)NoteType.Sprints });
+}
+@section scripts{
+    <script src="~/Scripts/js/SprintService.js"></script>
+    <script src="~/Scripts/js/FileService.js"></script>
+    <script src="~/Scripts/js/SprintDetail.js"></script>
+}

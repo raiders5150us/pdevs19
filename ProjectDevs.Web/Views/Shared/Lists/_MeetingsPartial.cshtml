@@ -1,0 +1,42 @@
+﻿@model PartialModel
+
+<ul class="hide hidden" hidden id="meeting-list-item-template">
+    <li>
+        <p class="meeting-text" t-meeting-purpose></p>
+        <ul class="stat-list">
+            <li>
+                <i class="fa fa-calendar m-x-5"></i>
+                <span class="meeting-date" t-meeting-date></span>
+            </li>
+            <li>
+                <i class="fa fa-clock-o m-r-5"></i>
+                <span class="meeting-time m-r-5" t-meeting-time></span>
+            </li>
+            <li>
+                <a role="button" title="Edit" class="btn btn-xs btn-primary" t-data-meeting-id ap-action-meeting-modal-form t-data-project-id data-project-id="@Model.ProjectId">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </li>
+            @*@if (Model.IsListPage || Model.IsMyPage)
+            {*@
+                <li>
+                    <a role="button" title="Notes" class="btn btn-xs btn-info" t-data-meeting-id ap-action-meeting-notes-modal 
+                       t-data-project-id data-project-id="@Model.ProjectId" t-data-note-type t-data-record-id data-note-type="@((int)NoteType.Meetings)">
+                        <i class="fa fa-file-text-o"></i>
+                    </a>
+                </li>
+                <li>
+                    <a role="button" title="Add Note to the meeting" class="btn btn-xs btn-info" t-data-meeting-id meeting_ap-action-note-modal-form  
+                       t-data-project-id data-project-id="@Model.ProjectId"  t-data-note-type t-data-record-id data-note-type="@((int)NoteType.Meetings)">
+                        <i class="fa fa-plus m-r-5"></i><i class="fa fa-file-text-o"></i>
+                    </a>
+                </li>
+            @*}*@
+        </ul>
+        <div class="clearfix"></div>
+        <div class="meeting-attendees p-5 m-t-10 d-block" t-meeting-attendees-container>
+            @*<span class="d-tag m-r-5 m-b-5">Abhay</span>*@
+        </div>
+        <div class="clearfix"></div>
+    </li>
+</ul>

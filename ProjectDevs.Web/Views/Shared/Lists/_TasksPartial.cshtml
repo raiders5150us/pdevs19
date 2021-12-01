@@ -1,0 +1,51 @@
+﻿@model PartialModel
+
+<ul id="task-list-item-template" class="hide hidden" hidden>
+    <li>
+        <p class="line-1">
+            <span class="d-tag task-status m-r-5" t-status>Status</span>
+            <span class="d-tag task-status m-r-5" t-ticket-number>Ticket Number</span>
+            <span class="user-story-text">
+                <a href="" role="button" class="user-story-link" t-link t-title>
+                </a>
+            </span>
+        </p>
+        <ul class="stat-list d-flex v-center" style="display: flex;">
+            <li>
+                <span class="task-type" t-task-type>Task Type</span>
+            </li>
+            <li>
+                <span class="changset" t-changeset>Changeset</span>
+            </li>
+            <li>
+                <i class="fa fa-user m-r-5"></i>
+                <span class="m-l-5" t-assignee>Assigned To</span>
+            </li>
+            <li>
+                <i class="fa fa-clock-o m-r-5"></i>
+                Projected
+                <span class="projected-hours m-l-5" t-projected-hours>Projected Hrs</span>
+            </li>
+            <li class="">
+                <i class="fa fa-clock-o m-r-5"></i>
+                Actual
+                <span class="actual-hours m-l-5" t-actual-hours>Actual Hrs</span>
+            </li>
+            @if (Model.IsEditEnabled)
+            {
+                <li>
+                    <a role="button" class="btn btn-xs btn-primary" title="Edit task" ap-action-task-modal-form
+                       data-story-id="@Model.StoryId" t-data-task-id t-data-story-id t-data-project-id>
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </li>
+            }
+            <li class="">
+                <a href="#" target="_blank" title="Open in new tab" class="btn btn-xs btn-info" t-link>
+                    <i class="fa fa-share"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </li>
+</ul>

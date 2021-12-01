@@ -1,0 +1,32 @@
+﻿@model PartialModel
+
+<div class="modal fade" tabindex="-1" role="dialog" id="@(Model.IdPrefix)create-edit-notes-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" id="@(Model.IdPrefix)notes-form">
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Note</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="d-form-container">
+                        <input type="hidden" id="@(Model.IdPrefix)note-id" name="NoteId" value="@Model.NoteId" />
+                        <input type="hidden" id="@(Model.IdPrefix)note-type-id" name="NoteTypeId" value="@Model.NoteType" />
+                        <input type="hidden" id="@(Model.IdPrefix)parent-id" name="ParentId" value="@Model.RecordId" />
+                        <div class="form-group">
+                            <label class="d-label">Note</label>
+                            <textarea class="form-control d-input"
+                                      id="@(Model.IdPrefix)note" name="Note" placeholder="Note" rows="5"></textarea>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="@(Model.IdPrefix)save-note-btn" class="btn dv-btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

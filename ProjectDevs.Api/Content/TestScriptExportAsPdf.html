@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="d-flex v-center h-space-between">
+        <h3 class="d-flex v-center">
+            <label>Test Script Details</label>
+        </h3>
+    </div>
+    <hr class="m-y-10">
+    <div>
+        <table class="table devs-table" style="width:100%">
+            <tbody>
+                <tr>
+                    <td>
+                        <b>Project : </b><span t-project-name="">@@v0@@</span>
+                    </td>
+                    <td>
+                        <b>Requested by : </b> <span t-requested-by-user="">@@v1@@</span>
+                    </td>
+                    <td>
+                        <b>Developer : </b><span t-assigned-to-developer="">@@v2@@</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Status : </b><span t-test-script-status="">@@v3@@</span></td>
+                    <td><b>Requested date : </b><span t-request-date="">@@v4@@</span></td>
+                    <td> <b>Dev Manager : </b><span t-assigned-to-dev-mgr="">@@v5@@</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Story : </b><span t-user-story-f1=""><strong><span>@@v7@@</span> : As a </strong>  @@v8@@</span>
+                    </td>
+                    <td> <b>Requested by date : </b> <span t-requested-by-date="">@@v9@@</span></td>
+                    <td><b>Biz Analyst : </b><span t-assigned-to-biz-analyst="">@@v10@@</span></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b style="visibility:hidden"> </b><span t-user-story-f2=""><strong>I want to </strong>  @@v11@@</span>
+                    </td>
+                    <td> </td>
+                    <td>
+                        <b>Biz Requester : </b> <span t-assigned-to-biz-requester="">@@v12@@</span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <b style="visibility:hidden"></b><span t-user-story-f3=""><strong>So i can </strong>  @@v13@@</span>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="m-y-10">
+
+    <div class="d-flex v-center h-space-between">
+        <h4 class="d-flex v-center">
+            <label>Steps</label>
+        </h4>
+
+    </div>
+    <hr class="m-y-10">
+    <div>
+        <table id="test-script-steps-table" border="1"  class="table table-striped table-bordered devs-table custom-disabled" style="width:100%;border-collapse:collapse">
+            <thead>
+                <tr>
+
+                    <th class="text-center">#</th>
+                    <th style="max-width: 200px;word-break: break-all;word-wrap: break-word;">Action Steps</th>
+                    <th style="max-width: 200px;word-break: break-all;word-wrap: break-word;">Expected Result</th>
+                    <th style="max-width: 300px;word-break: break-all;word-wrap: break-word;">Notes</th>
+                    <th style="width:110px">Developer </th>
+                    <th style="width:110px">Dev Manager</th>
+                    <th style="width:110px">Biz Analyst</th>
+                    <th style="width:110px">Biz Requester</th>
+                </tr>
+            </thead>
+            <tbody>
+                @@v14@@                
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

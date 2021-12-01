@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Sprint Stories";
+    int sprintId = ViewBag.SprintId;
+}
+@Html.Hidden("MainSprintId", sprintId)
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <h3 class="d-flex v-center">
+                <label>User Stories <span t-sprint-name class="sprint-details-heading-span"></span></label>
+            </h3>
+            <div>
+                <a role="button" class="btn dv-btn-success btn-sm pull-right" ap-action-stories-to-sprint @*data-toggle="modal" data-target="#stories-sprint-list-modal"*@
+                   data-keyboard="false" data-backdrop="static" data-sprint-id="@sprintId">
+                    <i class="fa fa-plus m-r-10"></i> Add User Stories to the Sprint
+                </a>
+
+                <a role="button" class="btn dv-btn-success btn-sm pull-right" ap-action-stories-to-sprint-refresh
+                   data-keyboard="false" data-backdrop="static" data-sprint-id="@sprintId" style="margin-right:5px;">
+                    <i class="fa fa-refresh m-r-10"></i> Refresh
+                </a>
+            </div>
+
+        </div>
+        <hr class="m-y-10" />
+        <label class="d-block">Filter by:</label>
+        <div class="d-flex v-center h-space-between">
+            <div class="filter-by-item f-grow-1 m-r-5">
+                <label>Project/Product name</label>
+                <select class="form-control projects-ddl" id="filter-project-id">
+                    <option value="">Select Project</option>
+                </select>
+            </div>
+            <div class="filter-by-item f-grow-1 m-x-5">
+                <label>Assigned to user</label>
+                <input type="text" class="form-control d-input users-auto" placeholder="Assignee" id="filter-assignee-name" />
+                <input type="hidden" value="" id="filter-assignee-id" class="autocomplete-value-hdn" />
+            </div>
+            <div class="f-grow-1 m-l-5">
+                <label class="d-block">Hours</label>
+                <div class="progress sprint-hours-progress m-b-5">
+                    <div class="progress-bar progress-bar-info" id="sprint-projected-hrs-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        Projected: 0
+                    </div>
+                </div>
+                <div class="progress sprint-hours-progress m-y-0">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" id="sprint-actual-hrs-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        Actual: 0
+                    </div>
+                    <div class="progress-bar progress-bar-info" id="sprint-projected-hrs-remaining-progress-bar" style="width: 0%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="m-y-10" />
+        @*<ul class="story-list" id="user-stories-list">
+            </ul>*@
+        <div class="d-flex v-center h-space-between">
+
+            <table id="list-project-stories-table" class="table table-striped table-bordered" style="width:100%">
+                <tbody id="user-stories-list">
+                </tbody>
+
+            </table>
+
+        </div>
+        <div class="clearfix"></div>
+        <hr class="m-y-5" />
+
+        <div class="user-stories-paging d-flex v-center h-space-between">
+            <p id="apdt_userstories_info">Showing <span class="apdt_startfrom">0</span> to <span class="apdt_endto">0</span> of <span class="apdt_total">0</span> records</p>
+            <div class="" id="user-stories-paging-container"></div>
+        </div>
+        <hr class="m-b-0 m-t-10" />
+    </div>
+</div>
+
+@{
+    Html.RenderPartial("Lists/_UserStoriesPartial", new PartialModel { IsEditEnabled = true, SprintId = sprintId });
+
+    Html.RenderPartial("Modals/_StoriesToSprintSelectionModal");
+    Html.RenderPartial("Lists/_StoriesToSprintSelectionPartial", new PartialModel { IsEditEnabled = false, SprintId = sprintId });
+
+    Html.RenderPartial("Modals/_SaveStoryModalPartial", new PartialModel { SprintId = sprintId });
+}
+
+@section scripts{
+    <script src="~/Scripts/js/StoryService.js"></script>
+    <script src="~/Scripts/js/SprintStories.js"></script>
+    <script src="~/Scripts/js/FileService.js"></script>
+}
+
+
+

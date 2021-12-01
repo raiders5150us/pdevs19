@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "Test Script Details";
+
+    int storyId = ViewBag.StoryId ?? 0;
+    int testScriptId = ViewBag.TestScriptId ?? 0;
+}
+
+@Html.Hidden("MainStoryId", storyId)
+@Html.Hidden("MainTestScriptId", testScriptId)
+
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <div class="col-lg-6">
+                <h3 class="d-flex v-center">
+                    <label>@ViewBag.Title</label>
+                </h3>
+            </div>
+            <div class="col-lg-6">
+                <a id="one-click-approval-btn" role="button" class="btn btn-success btn-sm pull-right hide" data-test-script-id="@testScriptId" data-story-id="@storyId" t-data-project-id>
+                    <i class="fa fa-check m-r-10"></i> One Click Approval
+                </a>
+                <a style="margin-left:5px;" role="button" class="btn dv-btn-success btn-sm pull-right" ap-action-test-script-modal-form data-test-script-id="@testScriptId" data-story-id="@storyId" t-data-project-id>
+                    <i class="fa fa-pencil m-r-10"></i> Edit Test Script
+                </a>
+                <a role="button" class="btn dv-btn-success btn-sm pull-right" ap-action-export-test-script data-test-script-id="@testScriptId"
+                   data-story-id="@storyId" t-data-project-id>
+                    <i class="fa fa-file-pdf-o m-r-10"></i> Export
+                </a>
+            </div>
+            
+            
+        </div>
+        <hr class="m-y-10" />
+        <div class="d-flex v-center h-space-between">
+            <table class="table devs-table" style="width:100%">
+                <tr>
+                    <td>
+                        <b>Project : </b><span t-project-name>Project Name</span>
+                    </td>
+                    <td>
+                        <b>Requested by : </b> <span t-requested-by-user>Requested by User Name</span>
+                    </td>
+                    <td>
+                        <b>Developer : </b><span t-assigned-to-developer>Developer Name</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Status : </b><span t-test-script-status>Status</span></td>
+                    <td><b>Requested date : </b><span t-request-date>Requested Date</span></td>
+                    <td> <b>Dev Manager : </b><span t-assigned-to-dev-mgr>Dev Manager</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Story : </b><span t-user-story-f1>User Story</span>
+                    </td>
+                    <td> <b>Requested by date : </b> <span t-requested-by-date>Requested by Date</span></td>
+                    <td><b>Biz Analyst : </b><span t-assigned-to-biz-analyst>Biz Analyst</span></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b style="visibility:hidden">Story : </b><span t-user-story-f2></span>
+                    </td>
+                    <td> </td>
+                    <td>
+                        <b>Biz Requester : </b> <span t-assigned-to-biz-requester>Biz Requester</span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <b style="visibility:hidden">Story : </b><span t-user-story-f3></span>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <div style="display:none" id="dvUploadedFile">
+                            <b>Uploaded File : </b> <a test-script-file target="_blank" href=""></a>
+                        </div>
+                        
+                        <button type="button" class="btn dv-btn-success btn-xs" data-file-type-id="" data-file-type="@FileType.TestScripts" data-record-id="@testScriptId" ap-action-file-modal-form>
+                            <i class="fa fa-upload m-r-5"></i> Upload File
+                        </button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <hr class="m-y-10" />
+
+        <div class="d-flex v-center h-space-between">
+            <h4 class="d-flex v-center">
+                <label>Steps</label>
+            </h4>
+            <a role="button" class="btn dv-btn-success btn-sm pull-right" ap-action-test-script-step-modal-form data-test-script-id="@testScriptId" data-step-id="0">
+                <i class="fa fa-plus m-r-10"></i> Create Test Script Step
+            </a>
+        </div>
+        <hr class="m-y-10" />
+
+        <table id="test-script-steps-table" class="table table-striped table-bordered devs-table custom-disabled" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="text-center">Action</th>
+                    <th class="text-center">#</th>
+                    <th style="max-width: 200px;word-break: break-all;word-wrap: break-word;">Action Steps</th>
+                    <th style="max-width: 200px;word-break: break-all;word-wrap: break-word;">Expected Result</th>
+                    <th style="max-width: 300px;word-break: break-all;word-wrap: break-word;">Notes</th>
+                    <th style="width:110px">Developer </th>
+                    <th style="width:110px">Dev Manager</th>
+                    <th style="width:110px">Biz Analyst</th>
+                    <th style="width:110px">Biz Requester</th>
+                    @*<th class="text-center">Status</th>*@
+
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="clearfix"></div>
+
+        <div class="d-flex v-center h-space-between">
+            <h3 class="d-flex v-center"></h3>
+            <a role="button" class="btn dv-btn-success btn-sm pull-right" style="display:none;" ap-action-test-script-save-steps data-test-script-id="@testScriptId" data-story-id="@storyId" t-data-project-id>
+                <i class="fa fa-save m-r-10"></i> Save Steps
+            </a>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="create-note-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" id="notes-form">
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Add Note</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="d-form-container">
+                        <input type="hidden" id="step_id" name="StepId" value="" />
+
+                        <div class="form-group">
+                            <label class="d-label">Note</label>
+                            <textarea class="form-control d-input"
+                                      id="note" name="Note" placeholder="Note" rows="5"></textarea>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-note-btn" ap-action-test-script-save-step-note class="btn dv-btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="test_script_step_notes">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header dv-bg-success">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Notes</h4>
+            </div>
+            <div class="modal-body">
+                <div class="d-form-container">
+                    <p id="p_step_notes"></p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+@{
+    Html.RenderPartial("Modals/_SaveTestScriptModalPartial", new PartialModel { StoryId = storyId });
+    Html.RenderPartial("Modals/_SaveTestScriptStepModalPartial", new PartialModel { StoryId = storyId, TestScriptId = testScriptId });
+    Html.RenderPartial("Lists/_FilesPartial", new PartialModel { RecordId = storyId, FileType = (int)FileType.TestScripts,TestScriptId = testScriptId, StoryId = storyId, IsEditEnabled = true });
+    Html.RenderPartial("Modals/_SaveFileModalPartial", new PartialModel { RecordId = storyId, FileType = (int)FileType.TestScripts });
+}
+
+@section scripts{
+    <script src="~/Scripts/js/TestScriptService.js"></script>
+    <script src="~/Scripts/js/TestScriptDetails.js"></script>
+    <script src="~/Scripts/js/FileService.js"></script>
+}
+
+
+

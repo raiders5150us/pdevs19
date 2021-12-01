@@ -1,0 +1,16 @@
+﻿@model PartialModel
+
+<ul class="hide hidden" hidden id="files-list-item-template">
+    <li>
+        <a href="#" target="_blank" title="Download" class="file-name" t-file-name t-file-link></a>
+        @if (Model.IsEditEnabled)
+        {
+            <label class="file-actions">
+                <a role="button" title="Edit" class="btn btn-xs btn-info" t-data-file-id t-data-file-name t-data-file-location  t-data-record-id
+                   data-record-id="@Model.RecordId" ap-action-file-modal-form t-data-file-type>
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </label>
+        }
+    </li>
+</ul>

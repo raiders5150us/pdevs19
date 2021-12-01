@@ -1,0 +1,289 @@
+﻿@{
+    var selectedTheme = Helpers.GetSelectedThemeValue();
+    var isDefaultTheme = selectedTheme == Constants.ThemeCookieDefaultValue;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ProjectDevs</title>
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <link async href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+    <link rel="stylesheet" href="https://select2.github.io/select2-bootstrap-theme/css/select2-bootstrap.css" />
+
+    <!-- qTip -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+    <!-- Full Calendar -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+
+    @Styles.Render("~/Content/css")
+    @if (!isDefaultTheme)
+    {
+        <link href="~/Content/@(selectedTheme).css" rel="stylesheet" />
+    }
+
+    
+</head>
+<body>
+    <div class="navbar top-bar navbar-fixed-top" id="pd-top-bar">
+        <div class="container-fluid p-x-30">
+            <div class="navbar-header" style="display: flex; align-items: center; justify-content: space-between;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="order: 2">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </button>
+                <a id="left-drawer-anchor-btn" role="button"
+                   class="btn-menu-bar toggle-menu-btn m-r-15" style="order: 0"
+                   data-toggle="tooltip" data-placement="bottom" title="Collapse left drawer">
+                    <span class="glyphicon glyphicon-align-left icon"></span>
+                </a>
+                <a href="/" title="ProjectDevs" class="navbar-brand b" style="order: 1">ProjectDevs</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/My/Projects" title="My Projects">My Projects</a>
+                    </li>
+                    <li>
+                        <a href="/My/User-Stories" title="My User Stories">My User Stories</a>
+                    </li>
+                    <li>
+                        <a href="/My/Story-Tasks" title="My Story Tasks">My Story Tasks</a>
+                    </li>
+                    <li>
+                        <a href="/My/Meetings" title="My Meetings">My Meetings</a>
+                    </li>
+                    <li>
+                        <a href="/My/Notes" title="My Notes">My Notes</a>
+                    </li>
+                    <li>
+                        <a href="/My/Files" title="My Files">My Files</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="top-notifications-btn" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="fa fa-bell-o"></span>
+                            <sup class="shad notification-counter" pd-notifications-counter></sup>
+                        </a>
+                        <ul class="dropdown-menu" id="top-notifications-list">
+                            <li role="separator" class="divider"></li>
+                            <li><a role="button" data-toggle="modal" data-target="#notifications-list-modal">All notifications</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user m-r-10"></span> <span data-loggedin-username>User</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="/Change-password">Change Password</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a role="button" pd-action-signout title="Signout">Logout</a></li>
+                        </ul>
+                    </li>
+
+                    @*<li>
+                            <a href="#">
+                                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+                            </a>
+                        </li>*@
+                </ul>
+
+                <form id="top-bar-search-form" class="navbar-form navbar-right" role="search" method="post" action="/Search">
+                    <div class="input-group">
+                        <input name="query" type="search" id="top-bar-search-txt" maxlength="250" class="form-control d-input" placeholder="Search for anything..." />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn dv-btn-success" id="top-bar-search-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="pd-body-container">
+        <div class="row">
+            <div class="left-drawer" id="pd-left-drawer">
+                <nav role="navigation" class="left-drawer-nav">
+                    <ul class="left-drawer-nav-list">
+                        <li>
+                            <a href="/" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                                <i class="fa fa-dashboard icon"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Projects" data-toggle="tooltip" data-placement="right" title="Projects">
+                                <i class="fa fa-briefcase icon"></i> <span>Projects</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/User-Stories" data-toggle="tooltip" data-placement="right" title="User Stories">
+                                <i class="fa fa-bookmark icon"></i> <span>User Stories</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Story-Tasks" data-toggle="tooltip" data-placement="right" title="Story Tasks">
+                                <i class="fa fa-tag icon"></i> <span>Story Tasks</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Test-Scripts" data-toggle="tooltip" data-placement="right" title="Test Scripts">
+                                <i class="fa fa-sticky-note-o icon"></i> <span>Test Scripts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Sprints" data-toggle="tooltip" data-placement="right" title="Active Sprints">
+                                <i class="fa fa-list icon"></i> <span>Sprints</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Meetings" data-toggle="tooltip" data-placement="right" title="Meetings">
+                                <i class="fa fa-comment-o icon"></i> <span>Meetings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Notes" data-toggle="tooltip" data-placement="right" title="Notes">
+                                <i class="fa fa-file-text-o icon"></i> <span>Notes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Files" data-toggle="tooltip" data-placement="right" title="Files">
+                                <i class="fa fa-folder-open icon"></i> <span>Files</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Reports" data-toggle="tooltip" data-placement="right" title="Reports">
+                                <i class="fa fa-file icon"></i> <span>Reports</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Users" data-toggle="tooltip" data-placement="right" title="Users">
+                                <i class="fa fa-user-o icon"></i> <span>Users</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/RotaSupp" data-toggle="tooltip" data-placement="right" title="RotaSupp">
+                                <i class="fa fa-calendar icon"></i> <span>Rota-Supp</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <nav style="flex:1;"></nav>
+                <nav role="navigation" class="left-drawer-nav">
+                    <ul class="left-drawer-nav-list">
+                        <li>
+                            <a role="button" data-toggle="tooltip" data-placement="right" title="Signout" pd-action-signout>
+                                <i class="fa fa-sign-out icon"></i> <span>Sign-out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="body-content" id="pd-body-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        @RenderBody()
+                    </div>
+                </div>
+
+                <hr />
+                <footer class="container">
+                    <p class="pull-left">&copy; @DateTime.Now.Year - ProjectDevs</p>
+                    <div class="d-flex v-center h-center pull-right" style="max-width: 150px">
+                        <label class="m-r-10">Theme</label>
+                        <select class="form-control" id="theme-selector">
+                            <option value="default" @(isDefaultTheme ? "selected" : "")>Default</option>
+                            <option value="red" @(string.Equals(selectedTheme, "red", StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Red</option>
+                            <option value="blue" @(string.Equals(selectedTheme, "blue", StringComparison.OrdinalIgnoreCase) ? "selected" : "")>Blue</option>
+                        </select>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    @{
+        Html.RenderPartial("Modals/_NotificationsModalPartial");
+    }
+
+    <div id="full-overlay" class="d-flex v-center h-center">
+        <i id="loader" class="fa fa-spin fa-spinner fa-5x"></i>
+    </div>
+
+    <div class="modal animated bounceIn pd-custom-modal" id="CustomAlertModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                    <h4 class="modal-title">Alert</h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="okbtn btn btn-primary dv-btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal animated bounceIn pd-custom-modal" id="CustomConfirmModal" tabindex="-1" role="dialog" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="okbtn btn btn-success dv-btn-success" data-dismiss="modal">OK</button>
+                    <button type="button" class="cancelbtn btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.js"></script>
+    <!-- Include moment-->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <!-- qTip -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <!-- Full Calendar -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('#left-drawer-anchor-btn').click(function (e) {
+                var btn = $(this);
+                $('.left-drawer').toggleClass('collapse');
+                $('.body-content').toggleClass('expanded');
+
+                btn.toggleClass('small');
+                if (btn.hasClass('small'))
+                    btn.attr('data-original-title', 'Expand left drawer');
+                else
+                    btn.attr('data-original-title', 'Collapse left drawer');
+            });
+            $(document).on('input', '.dv-slidecontainer .dv-slider', function (e) {
+                var slider = $(this);
+                var indicator = slider.next('.range-slider-value-indicator');
+                if (indicator) {
+                    indicator.html(slider.val());
+                }
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/shared")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

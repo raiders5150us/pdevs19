@@ -1,0 +1,66 @@
+﻿
+@{
+    string search = ViewBag.Search;
+    ViewBag.Title = "Search Results for " + search;
+}
+@Html.Hidden("SearchQuery", search)
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <h3>
+            Search Results for "<i>@search</i>"
+        </h3>
+        <hr />
+        <div class="clearfix"></div>
+        <div>            
+            <ul class="nav nav-tabs" role="tablist" id="search-tabs">
+                <li role="presentation" class="active">
+                    <a href="#all-search-results" role="tab" data-toggle="tab" data-search-filter-by="all">All</a>
+                </li>
+                <li role="presentation">
+                    <a href="#all-search-results" role="tab" data-toggle="tab" data-search-filter-by="tasks">Tasks</a>
+                </li>
+                <li role="presentation">
+                    <a href="#all-search-results" role="tab" data-toggle="tab" data-search-filter-by="stories">Stories</a>
+                </li>
+                <li role="presentation">
+                    <a href="#all-search-results" role="tab" data-toggle="tab" data-search-filter-by="meetings">Meetings</a>
+                </li>
+                <li role="presentation">
+                    <a href="#all-search-results" role="tab" data-toggle="tab" data-search-filter-by="notes">Notes</a>
+                </li>
+                <li role="presentation">
+                    <a href="#all-search-results" role="tab" data-toggle="tab" data-search-filter-by="files">Files</a>
+                </li>
+                <li role="presentation">
+                    <a href="#all-search-results" role="tab" data-toggle="tab" data-search-filter-by="projects">Projects</a>
+                </li>
+                <li role="presentation">
+                    <a href="#all-search-results" role="tab" data-toggle="tab" data-search-filter-by="testscripts">Test Scripts</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active p-15" id="all-search-results">
+                    <ul class="" id="search-results-ul">                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr class="m-y-5" />
+        <div class="user-stories-paging d-flex v-center h-space-between">
+            <p id="apdt_search_info" style="display: none;">Showing <span class="apdt_startfrom">0</span> to <span class="apdt_endto">0</span> of <span class="apdt_total">0</span> records</p>
+            <div class="" id="search-paging-container"></div>
+        </div>
+        <hr class="m-b-0 m-t-10" />
+    </div>
+</div>
+
+@{ 
+    Html.RenderPartial("Lists/_SearchPartial");
+}
+
+@section scripts{
+    <script src="~/Scripts/js/SearchPage.js"></script>
+}

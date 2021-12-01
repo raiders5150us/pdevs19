@@ -1,0 +1,192 @@
+﻿@model PartialModel
+<div class="hide hidden" hidden id="story-list-item-template">
+    <table>
+        <tbody>
+            <tr>
+                <td style="min-width:80px;">
+                    <span class="project-story-list-header">RANK</span><br />
+                    <span class="story-id d-tag m-r-5" t-priority-ranking></span>
+                </td>
+                <td style="min-width:90px;">
+                    <span class="project-story-list-header">STORY ID</span><br />
+                    <span class="story-id" t-story-name></span>
+                </td>
+                <td style="min-width:70px;">
+                    <span class="project-story-list-header">
+                        AS A...
+                    </span><br />
+                    <span class="as-a" t-story-as-a></span>
+                </td>
+                <td>
+                    <span class="project-story-list-header">
+                        I WANT TO...
+                    </span> <br />
+                    <span class="i-want-to" t-story-i-want-to>
+
+                    </span>
+                </td>
+                <td style="min-width:100px;">
+                    <span class="project-story-list-header">
+                        SO I CAN...
+                    </span> <br />
+                    <span class="others-font-size" t-so-i-can></span>
+                </td>
+                <td style="min-width:180px;">
+                    <span class="project-story-list-header">
+                        ACCEPTANCE CRITERIA
+                    </span> <br />
+                    <div class="others-font-size" t-acceptance-criteria></div>
+                </td>
+                <td>
+                    <span class="project-story-list-header">
+                        Notes
+                    </span><br />
+                    <div class="others-font-size" t-story-note></div>
+                </td>
+                <td>
+                    <span class="project-story-list-header">
+                        Requestor
+                    </span> <br />
+
+                    <span class="others-font-size" t-requester></span>
+                </td>
+                <td>
+                    <span class="project-story-list-header">
+                        Assigned
+                    </span> <br />
+
+                    <span class="others-font-size" t-assignee></span>
+                </td>
+                <td style="min-width:90px;">
+                    <span class="project-story-list-header">
+                        Status
+                    </span> <br />
+                    <span class="others-font-size" t-status>
+
+                    </span>
+                    <br /><br />
+                    <span class="project-story-list-header">
+                        Type
+                    </span> <br />
+                    <span class="others-font-size" t-story-type></span>
+                </td>
+                <td style="min-width:130px;">
+                    <span class="project-story-list-header">
+                        Projected Hours
+                    </span> <br />
+                    <span class="others-font-size" t-projected-hours></span>
+                    <br /><br />
+                    <span class="project-story-list-header">
+                        Actual Hours
+                    </span> <br />
+                    <span class="others-font-size" t-actual-hours></span>
+                </td>
+                <td style="min-width:90px;">
+                    <span class="project-story-list-header">
+                        Start Date
+                    </span> <br />
+                    <span class="others-font-size" t-start-date></span>
+                    <br /><br />
+                    @if (Model.IsEditEnabled)
+                    {
+                        <a href="#" title="Edit user story" class="link-btn p-l-10" style="display:none;" t-data-project-id t-data-story-id ap-action-story-modal-form>
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    }
+                    @if (ViewBag.ShowNextSprintOption ?? false)
+                    {
+                        <a href="#" title="Open in new tab" class="link-btn p-l-10" target="_blank" t-link>
+                            <i class="fa fa-share"></i>
+                        </a>
+                    }
+                    </td>
+                <td style="min-width:80px;">
+                    <span class="project-story-list-header">
+                        End Date
+                    </span> <br />
+                    <span class="others-font-size" t-end-date></span>
+                    <br /><br />
+
+                    @if (ViewBag.ShowNextSprintOption ?? false)
+                    {
+                        <a href="#" title="Copy to next sprint" class="link-btn p-l-10" t-data-sprint-id t-data-project-id t-data-story-id ap-action-story-copy-to-next-sprint>
+                            <i class="fa fa-level-up"></i>
+                        </a>
+                    }
+                    @if (!(ViewBag.ShowNextSprintOption ?? false))
+                    {
+                        <a href="#" title="Open in new tab" class="link-btn p-l-10" target="_blank" t-link>
+                            <i class="fa fa-share"></i>
+                        </a>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<ul class="hide hidden" hidden id="story-list-item-template1">
+
+    <li style="display:none">
+        <p class="line-1">
+            @*<span class="d-tag m-r-5" t-priority-ranking></span>*@
+            <span class="d-tag m-r-5" t-requester></span>
+            <span class="d-tag m-r-5" t-story-type></span>
+            <span class="user-story-text">
+                <a href="#" role="button" class="user-story-link" t-title t-link></a>
+            </span>
+        </p>
+        <ul class="stat-list">
+            <li>
+                <span class="d-tag m-r-5 text-uppercase" t-env></span>
+            </li>
+            <li>
+                <span class="project-name" t-project></span>
+            </li>
+            <li>
+                <span class="status-name" t-status></span>
+            </li>
+            <li>
+                <span t-projected-hours class="p-x-5 b"></span>
+            </li>
+            <li>
+                <span t-actual-hours class="p-x-5 b"></span>
+            </li>
+            <li>
+                <i class="fa fa-user m-r-5"></i>
+                <span class="assignee-name" t-assignee></span>
+            </li>
+            <li>
+                <i class="fa fa-calendar"></i>
+                <span>Start date: </span><span class="start-date m-r-5" t-start-date></span> - <span>End date: </span><span class="end-date m-l-5" t-end-date></span>
+            </li>
+            @if (Model.IsEditEnabled)
+            {
+                <li>
+                    <a href="#" title="Edit user story" class="link-btn p-l-10" style="display:none;" t-data-project-id t-data-story-id ap-action-story-modal-form>
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </li>
+
+
+            }
+        </ul>
+        <ul class="stat-list pull-right">
+            @if (ViewBag.ShowNextSprintOption ?? false)
+            {
+                <li style="border-left:0px;">
+                    <a href="#" title="Copy to next sprint" class="link-btn p-l-10" t-data-sprint-id t-data-project-id t-data-story-id ap-action-story-copy-to-next-sprint>
+                        <i class="fa fa-level-up"></i>
+                    </a>
+                </li>
+            }
+            <li>
+                <a href="#" title="Open in new tab" class="link-btn p-l-10" target="_blank" t-link>
+                    <i class="fa fa-share"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </li>
+</ul>
+

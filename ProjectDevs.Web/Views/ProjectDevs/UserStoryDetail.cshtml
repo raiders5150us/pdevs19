@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "User Story";
+    int storyId = ViewBag.StoryId;
+    int projectId = ViewBag.ProjectId;
+}
+@Html.Hidden("MainProjectId", projectId)
+@Html.Hidden("MainStoryId", storyId)
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <div>
+                <a href="/Projects/@projectId" class="btn btn-xs btn-primary" title="View Project Details" data-story-projectname></a>
+                <span class="d-tag-sm m-l-10" data-story-env></span>
+                <span class="d-tag-sm m-l-10" data-story-status></span>
+                <span class="d-tag-sm m-l-10" data-story-type></span>
+                <button type="button" class="m-l-15 btn btn-success btn-xs" title="Edit user story details"
+                        data-project-id="@projectId" data-story-id="@storyId" ap-action-story-modal-form>
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="d-flex v-center">
+            </div>
+            <a role="button" class="btn dv-btn-success btn-sm pull-right" href="/User-Stories">
+                <i class="fa fa-list m-r-10"></i> All User Stories
+            </a>
+        </div>
+        <hr class="m-y-15" />
+        <div class="d-flex m-t-10">
+            <div class="f-grow-3 p-10  m-r-5">
+                <label class="">Story Name </label>
+                <p class="f3-text" data-story-name></p>
+                <label class="">As a </label>
+                <p class="f3-text" data-story-f1></p>
+                <label class="m-t-10">I want to </label>
+                <p class="f3-text" data-story-f2></p>
+                <label class="m-t-10">So I Can </label>
+                <p class="f3-text" data-story-f3></p>
+                @*<hr class="m-y-10" />
+        <label>Acceptance Criteria</label>
+        <p class="acceptance-criteria-text" data-story-acceptancecriteria></p>*@
+            </div>
+            <div class="f-grow-3 p-10  m-l-5" style="min-width:293px;">
+                <div class="user-story-right-stats">
+                    <div class="form-group">
+                        <label class="">Priority</label>
+                        <span class="d-tag-sm m-l-10" data-story-priority></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <div class="form-group">
+                        <label class="">Assigned to</label>
+                        <span class="d-tag-sm m-l-10" data-story-assignee></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <div class="form-group">
+                        <label class="">Requested by</label>
+                        <span class="d-tag-sm m-l-10" data-story-requester></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+
+                    <div class="form-group">
+                        <label class="">Date range</label>
+                        <span class="d-tag-sm m-l-5" data-story-daterange></span>
+                    </div>
+                    @* <div class="form-group">
+                        <label class="">Date range</label>
+                        <span class="d-tag-sm m-l-5" data-story-daterange></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+
+                    <div class="form-group">
+                        <label class="">Requester target date</label>
+                        <span class="d-tag-sm m-l-10" data-story-requestertargetdate></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <div class="form-group">
+                        <label class="">Grooming complete date</label>
+                        <span class="d-tag-sm m-l-10" data-story-groomingcompletedate></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <div class="form-group">
+                        <label class="">Prod target date</label>
+                        <span class="d-tag-sm m-l-10" data-story-prodtargetdate></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />*@
+                </div>
+            </div>
+            <div class="f-grow-3 p-10  m-l-5" style="min-width:293px;">
+                <div class="user-story-right-stats">
+                    <div class="form-group">
+                        <label class="">Requested date</label>
+                        <span class="d-tag-sm m-l-10" data-story-requesteddate></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <div class="form-group">
+                        <label class="">Requester target date</label>
+                        <span class="d-tag-sm m-l-10" data-story-requestertargetdate></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <div class="form-group">
+                        <label class="">Grooming complete date</label>
+                        <span class="d-tag-sm m-l-10" data-story-groomingcompletedate></span>
+                    </div>
+                    <hr class="m-t-0 m-b-10" />
+                    <div class="form-group">
+                        <label class="">Prod target date</label>
+                        <span class="d-tag-sm m-l-10" data-story-prodtargetdate></span>
+                    </div>
+                    @*<hr class="m-t-0 m-b-10" />*@
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="d-block w-100 m-t-10">
+            <hr class="m-y-10" />
+            <label>Acceptance Criteria</label>
+            <p class="acceptance-criteria-text" data-story-acceptancecriteria></p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="d-block w-100 m-t-10">
+            <div class="p-10 shad-light">
+                <div class="d-flex v-center h-space-between">
+                    <h4>Tasks in this User Story</h4>
+                    <button type="button" class="btn dv-btn-success btn-xs" ap-action-task-modal-form data-story-id="@storyId" data-project-id="@projectId">
+                        <i class="fa fa-plus m-r-5"></i> Create Task
+                    </button>
+                </div>
+                <hr class="m-t-0 m-b-10" />
+                <ul class="story-list" id="story-tasks-list">
+                </ul>
+                <hr class="m-y-5" />
+                <div class="text-center">
+                    @*<a href="/User-Story/@storyId/Tasks" class="d-inline-block f-16" title="View all user story tasks">View All User Story Tasks</a>*@
+                    <a href="/Project/@projectId/User-Story/@storyId/Tasks" class="d-inline-block f-16" title="View all user story tasks">View All User Story Tasks</a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="d-flex m-t-10">
+            <div class="f-grow-7 p-10 shad-light m-r-5">
+                <div class="d-flex v-center h-space-between">
+                    <h4>Notes</h4>
+                    <button type="button" class="btn dv-btn-success btn-xs" ap-action-note-modal-form data-record-id="@storyId" data-note-type="@NoteType.UserStories">
+                        <i class="fa fa-plus m-r-5"></i> Add Notes
+                    </button>
+                </div>
+                <hr class="m-t-0 m-b-10" />
+                <ul class="story-list p-r-10" id="notes-list">
+                </ul>
+                <hr class="m-y-5" />
+                <div class="text-center">
+                    <a href="/Project/@projectId/Notes/type/@((int)NoteType.UserStories)/of/@storyId" class="d-inline-block f-16" title="View all notes">View All Notes</a>
+                </div>
+            </div>
+            <div class="f-grow-3 p-10 shad-light m-l-5">
+                <div class="d-flex v-center h-space-between">
+                    <h5>Files</h5>
+                    <button type="button" class="btn dv-btn-success btn-xs" data-file-type-id="" data-file-type="@FileType.UserStories" data-record-id="@storyId" ap-action-file-modal-form>
+                        <i class="fa fa-upload m-r-5"></i> Upload File
+                    </button>
+                </div>
+                <hr class="m-t-0 m-b-10" />
+                <ul class="files-list" id="files-list">
+                </ul>
+                <hr class="m-y-5" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+@{
+    Html.RenderPartial("Lists/_TasksPartial", new PartialModel { ProjectId = projectId, StoryId = storyId, IsEditEnabled = true });
+    Html.RenderPartial("Lists/_NotesPartial", new PartialModel { RecordId = storyId, NoteType = (int)NoteType.UserStories, ProjectId = projectId, StoryId = storyId, IsEditEnabled = true });
+    Html.RenderPartial("Lists/_FilesPartial", new PartialModel { RecordId = storyId, FileType = (int)FileType.UserStories, ProjectId = projectId, StoryId = storyId, IsEditEnabled = true });
+
+    Html.RenderPartial("Modals/_SaveTaskModalPartial", new PartialModel { ProjectId = projectId, StoryId = storyId });
+    Html.RenderPartial("Modals/_SaveNoteModalPartial", new PartialModel { RecordId = storyId, FileType = (int)FileType.UserStories });
+    Html.RenderPartial("Modals/_SaveFileModalPartial", new PartialModel { RecordId = storyId, NoteType = (int)NoteType.UserStories });
+
+    Html.RenderPartial("Modals/_SaveStoryModalPartial", new PartialModel { ProjectId = projectId, StoryId = storyId });
+}
+
+@section scripts{
+    <script src="~/Scripts/js/StoryService.js"></script>
+    <script src="~/Scripts/js/TaskService.js"></script>
+    <script src="~/Scripts/js/FileService.js"></script>
+    <script src="~/Scripts/js/NoteService.js"></script>
+    <script src="~/Scripts/js/UserStoryDetails.js"></script>
+}

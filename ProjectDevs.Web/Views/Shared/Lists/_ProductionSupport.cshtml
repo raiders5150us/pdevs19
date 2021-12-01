@@ -1,0 +1,67 @@
+﻿@model PartialModel
+<table class="table table-striped table-bordered devs-table hidden" id="tbl_ProductionSupport_ReportTable" style="width:100%">
+    <thead>
+        <tr>
+            <td>Story ID</td>
+            <td>As a</td>
+            <td>I want to</td>
+            <td>So I Can</td>
+            <td>Acceptance Criteria</td>
+            <td>Note</td>
+            <td>Requester</td>
+            <td>Assigned To</td>
+            <td>Status</td>
+            <td>Request Date</td>
+            <td>Start Date</td>
+            <td>End Date</td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="12">No Data Found</td></tr>
+    </tbody>
+</table>
+
+<table class="hide hidden" hidden id="production-support-report-list-table-template">
+    <tr class="report-tr-wrapper">
+        <td>
+            <small t-storyid=""></small>
+        </td>
+        <td>
+            <small t-f1=""></small>
+        </td>
+        <td>
+            <small t-f2=""></small>
+        </td>
+        <td>
+            <small t-f3=""></small>
+        </td>
+        <td>
+            <small t-acceptancecriteria=""></small>
+        </td>
+        <td>
+            <small t-note=""></small>
+        </td>
+        <td>
+            <small t-requester=""></small>
+        </td>
+        <td>
+            <small t-assignedto=""></small>
+        </td>
+        <td>
+            <small t-status=""></small>
+        </td>
+        <td>
+            <small t-requestdate=""></small>
+        </td>
+        <td>
+            <small t-startdate=""></small>
+        </td>
+
+        <td>
+            <small t-enddate=""></small>
+        </td>
+
+       
+    </tr>
+</table>

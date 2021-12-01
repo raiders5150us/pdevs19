@@ -1,0 +1,42 @@
+﻿
+
+<div id="mySidenavR" class="sidenavR" style="padding: 0;">
+    <a role="button" class="closebtn closeNavR" title="Close panel">×</a>
+    <label class="d-block">Filter by:</label>
+    <div class="d-flex v-center h-space-between">
+        <div class="filter-by-item f-grow-1 m-r-5">
+            <label>Project name</label>
+            <select class="form-control projects-ddl" id="filter-project-id-stories-sprint">
+                <option value="">Select Project</option>
+            </select>
+        </div>       
+        <div class="filter-by-item f-grow-1 m-l-5">
+            <label>Assigned to user</label>
+            <input type="text" class="form-control d-input users-auto" placeholder="Assignee" id="filter-assignee-name-stories-sprint" />
+            <input type="hidden" value="" id="filter-assignee-id-stories-sprint" class="autocomplete-value-hdn" />
+        </div>
+    </div>
+    <hr class="m-y-10" />
+
+    <h4 class="slide-panel-heading">Add Stories <span t-sprint-name class="sprint-details-heading-span"></span></h4>
+    <hr class="m-t-5 m-b-5" />
+    <div>
+        <label class="d-checkbox-container">
+            <input class="d-checkbox" type="checkbox" id="chk-all">
+            <span class="d-checkmark"></span>
+        </label>
+        <label for="chk-all" class="m-l-5" role="button" title="Select all stories on the page">Select all</label>
+    </div>
+    <div class="stories-sprint-container p-10">
+        <ul class="story-list" id="stories-sprint-ul">
+        </ul>
+        <div class="clearfix"></div>
+        <hr class="m-y-5" />
+        <div class="user-stories-paging d-flex v-center h-space-between">
+            <p id="apdt_stories-sprint_info">Showing <span class="apdt_startfrom">0</span> to <span class="apdt_endto">0</span> of <span class="apdt_total">0</span> records</p>
+            <div class="" id="stories-sprint-paging-container"></div>
+        </div>
+        <hr />
+    </div>
+    <button type="button" id="add-stories-to-sprint-btn" class="btn btn-sm dv-btn-success right-slide-panel-footer-btn">Add selected stories to sprint</button>
+</div>

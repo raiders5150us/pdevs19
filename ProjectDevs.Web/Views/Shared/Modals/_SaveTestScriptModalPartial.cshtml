@@ -1,0 +1,92 @@
+﻿@model PartialModel
+
+<div class="modal fade" tabindex="-1" role="dialog" id="create-edit-test-script-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" id="test-scripts-form">
+                @*<input type="hidden" id="story-id" name="StoryId" value="@Model.StoryId" />*@
+                <input type="hidden" id="test-script-id" name="TestScriptId" value="@Model.TestScriptId" />
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Test Script</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="d-form-container">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project</label>
+                                <select class="form-control d-input projects-ddl" id="test-script-project-ddl" name="ProjectId">
+                                    <option value="">Select Project</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">Story</label>
+                                <select class="form-control d-input stories-ddl" id="test-script-story-ddl" name="StoryId">
+                                    <option value="">Select Story</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Test Script Status</label>
+                                <select class="form-control d-input test-script-status-ddl" id="test-script-status" name="TestScriptStatus">
+                                    <option value="">Select Status</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Developer</label>
+                                <input type="text" class="form-control d-input users-auto" id="developer-name" placeholder="Developer" />
+                                <input type="hidden" value="" id="assignee-developer-id" name="AssignedToDeveloperId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Dev Manager</label>
+                                <input type="text" class="form-control d-input users-auto" id="dev-manager-name" placeholder="Dev Manager" />
+                                <input type="hidden" value="" id="assignee-dev-manager-id" name="AssignedToDevManagerId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Business Analyst</label>
+                                <input type="text" class="form-control d-input users-auto" id="business-analyst-name" placeholder="Business Analyst" />
+                                <input type="hidden" value="" id="assignee-business-analyst-id" name="AssignedToBusinessAnalystId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Business Stakeholder</label>
+                                <input type="text" class="form-control d-input users-auto" id="business-stakeholder-name" placeholder="Business Stakeholder" />
+                                <input type="hidden" value="" id="assignee-business-stakeholder-id" name="AssignedToBusinessStakeholderId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Request Date</label>
+                                <input type="date" class="form-control d-input" id="request-date" name="RequestDate" placeholder="Request date" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Requested by Date</label>
+                                <input type="date" class="form-control d-input" id="requested-by-date" name="RequestedByDate" placeholder="Requested by date" />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-test-script-btn" class="btn dv-btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

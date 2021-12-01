@@ -1,0 +1,124 @@
+﻿@model PartialModel
+
+<div class="modal fade" tabindex="-1" role="dialog" id="create-edit-task-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" id="task-form">
+                @*<input type="hidden" id="story-id" name="StoryId" value="@Model.StoryId" />*@
+                <input type="hidden" id="task-id" name="TaskId" value="@Model.TaskId" />
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Task</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="d-form-container">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project</label>
+                                <select class="form-control d-input projects-ddl" id="task-project-ddl" name="ProjectId">
+                                    <option value="">Select Project</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">LOB</label>
+                                <select class="form-control d-input lob-ddl" id="task-lob-ddl" name="LOBId"  multiple="multiple">
+                                    <option value="">Select LOB</option>
+                                </select>
+                                <input type="hidden" name="LOB" id="hdnLOBId"/>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">Story</label>
+                                <select class="form-control d-input stories-ddl" id="task-story-ddl" name="StoryId">
+                                    <option value="">Select Story</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Task Status</label>
+                                <select class="form-control d-input task-status-ddl" id="task-status" name="TaskStatus">
+                                    <option value="">Select Task Status</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Task Type</label>
+                                <select class="form-control d-input" id="task-type" name="TaskType">
+                                    <option value="">Select Task Type</option>
+                                    <option value="Documentation">Documentation</option>
+                                    <option value="Service Requests">Service Requests</option>
+                                    <option value="Development">Development</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Ticket Number</label>
+                                <input type="text" class="form-control d-input" maxlength="20" name="TicketNumber" placeholder="Ticket number" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Changeset</label>
+                                <input type="text" class="form-control d-input" name="Changeset" placeholder="Changeset" pd-val-number />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">Task Name</label>
+                                <input type="text" class="form-control d-input" maxlength="100" id="task-name" name="TaskName" placeholder="Task name" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">Task Description</label>
+                                <textarea maxlength="1000" class="form-control d-input"
+                                          id="task-description" name="TaskDescription" placeholder="Task description" rows="8"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Assignee</label>
+                                <input type="text" class="form-control d-input users-auto" id="assignee-name" placeholder="Assignee" />
+                                <input type="hidden" value="" id="assignee-id" name="AssignedToUserId" class="autocomplete-value-hdn" />
+                            </div>
+                        </div>
+                        @*<div class="col-sm-6">&nbsp;</div>
+        <div class="clearfix"></div>*@
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Projected Hours</label>
+                                <input type="number" class="form-control d-input" id="projected-hours" name="ProjectedHours" placeholder="Projected hours" />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Total Hours</label>
+                                <input type="number" class="form-control d-input" id="actual-hours" readonly name="ActualHours" placeholder="Total hours" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Hours Worked</label>
+                                <input type="number" class="form-control d-input" id="hours-worked" name="HoursWorked" placeholder="Hours worked" />
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-task-btn" class="btn dv-btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

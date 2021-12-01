@@ -1,0 +1,49 @@
+﻿@model PartialModel
+
+<ul class="hide hidden" hidden id="stories-sprint-list-item-template">
+    <li>
+        <p class="line-1">
+            <label class="d-checkbox-container">
+                <input class="d-checkbox story-chk" type="checkbox" t-data-story-id t-dynamic-id>
+                <span class="d-checkmark"></span>
+            </label>
+            <span class="user-story-text m-l-10">
+                <label t-dynamic-for role="button" class="user-story-link span-label stories-to-sprint-lbl" t-title></label>
+            </span>
+        </p>
+        <ul class="stat-list">
+            <li>
+                <span class="d-tag" t-project></span>
+            </li>
+            <li>
+                <span class="d-tag" t-project-rank></span>
+            </li>
+            <li>
+                <span class="d-tag" t-priority-ranking></span>
+            </li>
+            <li>
+                <span class="d-tag" t-assignee></span>
+            </li>
+            <li>
+                <span class="d-tag" t-story-status></span>
+            </li>
+            @if (Model.IsEditEnabled)
+            {
+                <li>
+                    <a href="#" title="Edit user story" class="link-btn p-l-10" t-data-project-id t-data-story-id ap-action-story-modal-form>
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+        <ul class="stat-list pull-right">
+            <li>
+                <a href="#" title="Open Story in new tab" class="link-btn p-x-10" target="_blank" t-link>
+                    <i class="fa fa-share"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </li>
+</ul>
+

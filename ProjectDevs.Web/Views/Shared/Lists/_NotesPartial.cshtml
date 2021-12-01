@@ -1,0 +1,32 @@
+﻿@model PartialModel
+
+<ul class="hide hidden" hidden id="notes-list-item-template">
+    <li class="note-li-wrapper">
+        <ul class="stat-list d-block">
+            <li>
+                <i class="glyphicon glyphicon-user m-x-5"></i>
+                <span class="assignee-name" t-createdby></span>
+            </li>
+            <li>
+                <i class="fa fa-clock-o"></i>
+                <span class="created-date m-r-5" t-createdon></span>
+            </li>
+            <li>
+                <i class="fa fa-clock-o"></i>
+                <span class="modified-date m-r-5" t-modifiedon></span>
+            </li>
+            @if (Model.IsEditEnabled)
+            {
+                <li>
+                    <a role="button" title="Edit" class="btn btn-xs btn-primary" t-data-note-id t-data-note-type t-data-record-id
+                       ap-action-note-modal-form data-record-id="@Model.RecordId">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+        <div class="clearfix"></div>
+        <p class="notes-text d-block m-t-5" t-note-text></p>
+        <div class="clearfix"></div>
+    </li>
+</ul>

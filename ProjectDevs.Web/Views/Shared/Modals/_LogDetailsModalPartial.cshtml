@@ -1,0 +1,28 @@
+﻿
+<div class="modal fade" tabindex="-1" role="dialog" id="api-log-details-modal" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form method="post" id="files-form">
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Log Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="log-details-container p-10">
+                        <label>Stack Trace:</label>
+                        <code>
+                            <pre id="log-stack-trace"></pre>
+                        </code>
+                        <hr />
+                        <label>Inner Exception:</label>
+                        <code id="log-inner-exception">
+                        </code>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

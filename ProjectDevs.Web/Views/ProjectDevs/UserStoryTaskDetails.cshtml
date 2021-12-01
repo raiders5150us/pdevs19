@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Task";
+    int storyId = ViewBag.StoryId;
+    int taskId = ViewBag.TaskId;
+    int projectId = ViewBag.ProjectId ?? 0;
+}
+@Html.Hidden("MainProjectId", projectId)
+@Html.Hidden("MainStoryId", storyId)
+@Html.Hidden("MainTaskId", taskId)
+
+<div class="container-fluid">
+    <div class="row bg-w p-15">
+        <div class="d-flex v-center h-space-between">
+            <h3 class="d-flex v-center">
+                <label data-task-name>Task Name</label>
+                <button type="button" class="m-l-15 btn btn-success btn-xs" title="Edit task" data-task-id="@taskId" data-story-id="@storyId" data-project-id="@projectId" ap-action-task-modal-form>
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </h3>
+            <a role="button" class="btn dv-btn-success btn-sm pull-right" href="/User-Story/@storyId/Tasks">
+                <i class="fa fa-list m-r-10"></i> All Tasks
+            </a>
+        </div>
+        <hr class="m-y-15" />
+        <div class="w-100 d-block m-t-10">
+            <div class="p-10 m-r-5">
+                <div class="d-flex v-center h-space-between">
+                    <div class="">
+                        <span class="d-tag-sm task-status m-r-5" data-task-status>Task Status</span>
+                        <span class="d-tag-sm task-type m-l-5" data-task-type>Task Type</span>
+                        <span class="d-tag-sm task-type m-l-5" data-assignee-name>Assigned To</span>
+                    </div>
+                    <div class="">
+                        <span class="d-tag-sm projected-hours m-r-5" data-projected-hours>Projected Hours</span>
+                        <span class="d-tag-sm actual-hours m-l-5" data-actual-hours>Actual Hours</span>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <label class="m-t-30">Description </label>
+                <p class="task-description-text" data-task-description></p>
+                <hr class="m-y-15" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="d-flex m-t-10">
+            <div class="f-grow-7 p-10 shad-light m-r-5">
+                <div class="d-flex v-center h-space-between">
+                    <h4>Notes</h4>
+                    <button type="button" class="btn dv-btn-success btn-xs" ap-action-note-modal-form data-record-id="@taskId" data-note-type="@NoteType.Tasks">
+                        <i class="fa fa-plus m-r-5"></i> Add Notes
+                    </button>
+                </div>
+                <hr class="m-t-0 m-b-10" />
+                <ul class="story-list p-r-10" id="notes-list">
+                </ul>
+                <hr class="m-y-5" />
+                <div class="text-center">
+                    <a data-task-notes-link href="/Project/@projectId/Notes/type/@((int)NoteType.Tasks)/of/@taskId" class="d-inline-block f-16" title="View all notes">View All Notes</a>
+                </div>
+            </div>
+            <div class="f-grow-3 p-10 shad-light m-l-5">
+                <div class="d-flex v-center h-space-between">
+                    <h5>Files</h5>
+                    <button type="button" class="btn dv-btn-success btn-xs" data-file-type-id="" data-file-type="@FileType.Tasks" data-record-id="@taskId" ap-action-file-modal-form>
+                        <i class="fa fa-upload m-r-5"></i> Upload File
+                    </button>
+                </div>
+                <hr class="m-t-0 m-b-10" />
+                <ul class="files-list" id="files-list">
+                </ul>
+                <hr class="m-y-5" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+@{
+    Html.RenderPartial("Lists/_NotesPartial", new PartialModel { RecordId = storyId, StoryId = storyId, TaskId = taskId, FileType = (int)FileType.Tasks, IsEditEnabled = true });
+    Html.RenderPartial("Lists/_FilesPartial", new PartialModel { RecordId = storyId, StoryId = storyId, TaskId = taskId, NoteType = (int)NoteType.Tasks, IsEditEnabled = true });
+
+    Html.RenderPartial("Modals/_SaveNoteModalPartial", new PartialModel { RecordId = taskId, FileType = (int)FileType.Tasks });
+    Html.RenderPartial("Modals/_SaveFileModalPartial", new PartialModel { RecordId = taskId, NoteType = (int)NoteType.Tasks });
+
+    Html.RenderPartial("Modals/_SaveTaskModalPartial", new PartialModel { StoryId = storyId, TaskId = taskId });
+}
+
+@section scripts{
+    <script src="~/Scripts/js/TaskService.js"></script>
+    <script src="~/Scripts/js/FileService.js"></script>
+    <script src="~/Scripts/js/NoteService.js"></script>
+    <script src="~/Scripts/js/UserStoryTaskDetails.js"></script>
+}

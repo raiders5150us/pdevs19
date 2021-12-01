@@ -1,0 +1,62 @@
+﻿@model PartialModel
+
+<div class="modal fade" tabindex="-1" role="dialog" id="create-edit-meetings-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" id="meetings-form">
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Meeting</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="d-form-container">
+                        <input type="hidden" id="meeting-id" name="MeetingId" value="@Model.MeetingId" />
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Project</label>
+                                <select class="form-control d-input projects-ddl" id="project-id" name="ProjectId">
+                                    <option value="">Select Project</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">&nbsp;</div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Meeting Date</label>
+                                <input type="date" class="form-control d-input" id="meeting-date" name="MeetingDate" placeholder="Meeting date" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Meeting Time</label>
+                                <input type="text" class="form-control d-input" maxlength="20" id="meeting-time" name="MeetingTime" placeholder="Meeting time" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Purpose</label>
+                                <textarea maxlength="200" class="form-control d-input" id="purpose" name="Purpose" placeholder="Purpose" rows="6"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Attendees</label>
+                                <input type="text" class="form-control d-input users-auto attendee-txt" placeholder="Attendees" />
+                                <input type="hidden" value="" id="attendee-ids" name="AttendeeIds" class="autocomplete-value-hdn" />
+                            </div>
+                            <ul id="attendees-box-list" class="usernames-box-list">
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-meeting-btn" class="btn dv-btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

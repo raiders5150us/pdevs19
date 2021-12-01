@@ -1,0 +1,58 @@
+﻿@model PartialModel
+
+<div class="modal fade" tabindex="-1" role="dialog" id="create-edit-test-script-step-modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" id="test-scripts-step-form">
+                <input type="hidden" id="test-script-id" name="TestScriptId" value="@Model.TestScriptId" />
+                <input type="hidden" id="test-script-step-id" name="StepId" value="@Model.TestScriptStepId" />
+                <div class="modal-header dv-bg-success">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Create/Edit Test Script Step</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="d-form-container">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Step Number</label>
+                                <input type="number" min="1" max="100" class="form-control d-input" placeholder="Step number" name="StepNumber" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Test Script Status</label>
+                                <select class="form-control d-input test-script-status-ddl" name="TestScriptStatus">
+                                    <option value="">Select Status</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Action</label>
+                                <textarea maxlength="500" class="form-control d-input" name="Action" placeholder="Action" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="d-label">Expected Result</label>
+                                <textarea maxlength="500" class="form-control d-input" name="ExpectedResults" placeholder="Expected result" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="d-label">Notes</label>
+                                <textarea maxlength="1000" class="form-control d-input" name="Notes" placeholder="Notes" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save-test-script-step-btn" class="btn dv-btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
