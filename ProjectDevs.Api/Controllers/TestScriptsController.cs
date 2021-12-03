@@ -250,10 +250,10 @@ namespace ProjectDevs.Api.Controllers
                         int passId = _cacheService.TestScriptStepsStatusNames.Where(a => a.Value.ToLower() == "pass").Select(a => a.Key).FirstOrDefault();
                         int failId = _cacheService.TestScriptStepsStatusNames.Where(a => a.Value.ToLower() == "fail").Select(a => a.Key).FirstOrDefault();
 
-                        string devStatus = step.DeveloperStepStatusId == null ? "Fail" : step.DeveloperStepStatusId.Value == passId ? "Pass" : "Fail";
-                        string devMgrStatus = step.DevMgrStepStatusId == null ? "Fail" : step.DevMgrStepStatusId.Value == passId ? "Pass" : "Fail";
-                        string bizAnalystStatus = step.BizAnalystStepStatusId == null ? "Fail" : step.BizAnalystStepStatusId.Value == passId ? "Pass" : "Fail";
-                        string bizRequesterStatus = step.BizRequesterStepStatusId == null ? "Fail" : step.BizRequesterStepStatusId.Value == passId ? "Pass" : "Fail";
+                        string devStatus = step.DeveloperStepStatusId == null ? "" : step.DeveloperStepStatusId.Value == passId ? "Pass" : "Fail";
+                        string devMgrStatus = step.DevMgrStepStatusId == null ? "" : step.DevMgrStepStatusId.Value == passId ? "Pass" : "Fail";
+                        string bizAnalystStatus = step.BizAnalystStepStatusId == null ? "" : step.BizAnalystStepStatusId.Value == passId ? "Pass" : "Fail";
+                        string bizRequesterStatus = step.BizRequesterStepStatusId == null ? "" : step.BizRequesterStepStatusId.Value == passId ? "Pass" : "Fail";
 
                         var tr = "<tr><td class='text-center v-middle'>" + step.StepNumber + "</td>";
                         tr += "<td class='v-middle' style='max-width: 200px;word-break: break-all;word-wrap: break-word;'>" + step.Action + "</td>";
