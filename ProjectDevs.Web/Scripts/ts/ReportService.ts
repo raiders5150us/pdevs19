@@ -151,8 +151,9 @@ class ReportService {
         if (report && report.length) {
             report.forEach(n => {
                 const tr = this.templateLi_ProductionRelease.clone();
+                tr.find('[t-projectname]').text(n.ProjectName);
                 tr.find('[t-note]').text(n.Note);
-                tr.find('[t-storyid]').text(n.StoryId);
+                tr.find('[t-storyid]').text(n.StoryName);
                 tr.find('[t-projectname]').text(n.ProjectName);
                 tr.find('[t-storyname]').text(n.StoryName);
                 tr.find('[t-f1]').text(n.F1);
