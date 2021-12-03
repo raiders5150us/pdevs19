@@ -324,7 +324,7 @@ namespace ProjectDevs.Api.Helpers
                     Row headerRow = new Row();
 
                     List<String> columns = new List<string>();
-
+                    AddColumn(headerRow, columns, "Project", CellValues.String);
                     AddColumn(headerRow, columns, "Story ID", CellValues.String);
                     AddColumn(headerRow, columns, "As a", CellValues.String);
                     AddColumn(headerRow, columns, "I want to", CellValues.String);
@@ -343,9 +343,14 @@ namespace ProjectDevs.Api.Helpers
                     {
                         Row newRow = new Row();
 
+                        Cell cell0 = new Cell();
+                        cell0.DataType = CellValues.String;
+                        cell0.CellValue = new CellValue(d.ProjectName);
+                        newRow.AppendChild(cell0);
+
                         Cell cell1 = new Cell();
                         cell1.DataType = CellValues.String;
-                        cell1.CellValue = new CellValue(d.StoryId);
+                        cell1.CellValue = new CellValue(d.StoryName);
                         newRow.AppendChild(cell1);
 
                         Cell cell2 = new Cell();
